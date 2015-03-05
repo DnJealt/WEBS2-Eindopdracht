@@ -1,11 +1,11 @@
-<?php include_once 'head.php'?>
+<?php include_once 'head.inc.php' ?>
 
 <body>
-<?php include_once 'header.php'?>
+<?php include_once 'header.inc.php' ?>
 
 
 
 
 
-<?php include_once 'footer.php' ?>
+<?php include_once 'footer.inc.php' ?>
 </body>
