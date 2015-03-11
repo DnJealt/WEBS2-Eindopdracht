@@ -5,7 +5,7 @@
 class products extends Model
 {
     protected static $tableName = products;
-    protected static $primaryKey = 'userid';
+    protected static $primaryKey = 'productid';
 
 
 }
