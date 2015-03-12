@@ -1,0 +1,30 @@
+<?php echo $this->flashMessages(); ?>
+<div class="alert-message info">
+	<h3>Beheer pagina's</h3>
+</div>
+
+<table class="zebra-striped">
+	<thead>
+		<tr>
+  			<th>Pagina</th>
+  			<th>Kolom</th>
+  			<th>Status</th>
+  			<th>Actie</th>
+  		</tr>
+	</thead>
+	<tbody>
+	<?php 
+		foreach($this->pages as $page)
+		{
+			echo '<tr>
+				<td><a href="' . $this->url(array('id' => $page->getId()), 'page-admin-index-edit') . '">' . $this->escape($page->getName()) . '</a></td>
+				<td>' . $this->columnList($this->escape($page->getColumn())) . '</td>
+				<td>' . $this->activeList($this->escape($page->getStatus())) . '</td>
+				<td><a href="' . $this->url(array('id' => $page->getId()), 'page-admin-index-delete') . '" class="confirmDelete"">Verwijderen</a></td>
+			</tr>';
+		}
+	?>
+  	</tbody>
+</table>
+
+<?php echo $this->paginationControl($this->pages, 'Sliding', '_pagination.phtml'); ?>

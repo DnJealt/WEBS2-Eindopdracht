@@ -1,0 +1,21 @@
+<div class="widget">
+	<div class="widget-head">
+		<i class="icon-lock"></i>
+		Login
+	</div>
+	<div class="widget-content">
+		<div class="padd">
+			<form method="<?php echo $this->form->getMethod(); ?>" enctype="<?php echo $this->form->getEnctype(); ?>" action="<?php echo $this->form->getAction(); ?>">
+				<?php echo $this->form; ?>
+			</form>
+		</div>
+		<div class="widget-foot">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#username').focus();
+	});
+</script>

@@ -1,0 +1,40 @@
+<?php echo $this->flashMessages(); ?>
+
+<div class="widget">
+    <div class="widget-head">Beheer gebruikers</div>
+    <div class="widget-content">
+        <div class="padd">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Gebruikersnaam</th>
+                    <th>E-mailadres</th>
+                    <th>Groep</th>
+                    <th>Status</th>
+                    <th>Actie</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach($this->users as $user)
+                {
+                    /**
+                     * @var $user User_Model_User
+                     */
+                    echo '<tr>
+				<td><a href="' . $this->url(array('id' => $user->getId()), 'user-admin-index-edit') . '">' . $this->escape($user->getUsername()) . '</a></td>
+				<td>' . $this->escape($user->getEmail()) . '</td>
+				<td>' . $this->roleList($this->escape($user->getRoleId())) . '</td>
+				<td>' . $this->activeList($this->escape($user->getStatus())) . '</td>
+				<td>' . ((!array_key_exists($user->getId(), $user->getReadOnly())) ? '<a href="' . $this->url(array('id' => $user->getId()), 'user-admin-index-delete') . '" class="confirmDelete">Verwijderen</a>' : '') . '</td>
+			</tr>';
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="widget-foot">
+        <?php echo $this->paginationControl($this->users, 'Sliding', '_pagination.phtml'); ?>
+    </div>
+</div>

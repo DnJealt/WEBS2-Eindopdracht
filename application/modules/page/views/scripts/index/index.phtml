@@ -1,0 +1,10 @@
+<?php 
+	$page = $this->page; 
+	
+	$this->headTitle($this->escape($page->getName()));
+?>
+<h1 class="titel"><?php echo $this->escape($page->getName()); ?></h1>
+<div class="kaderBlauw">
+	<?php echo $this->htmlPurifier($page->getContent()); ?>
+	<div class="clear"></div>
+</div>

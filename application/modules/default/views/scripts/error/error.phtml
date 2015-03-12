@@ -1,0 +1,33 @@
+<h1 class="titel">Oeps!</h1>
+<div class="kaderBlauw">
+<?php 
+	if(isset($this->exception))
+	{
+		if($this->exception->getCode() == 404)
+		{
+?>
+			<p>De pagina die u zoekt bestaat niet, of is verplaatst of verwijderd.</p>
+<?php 
+		}
+	}
+?>
+
+<?php 
+	if(APPLICATION_ENV == 'development')
+	{
+	    if(isset($this->exception) && isset($this->request))
+	    {
+?>
+		<h2>Exception information:</h2>
+		<p><?php echo $this->exception->getMessage(); ?></p>
+		
+		<h2>Stack trace:</h2>
+		<pre><?php echo $this->exception->getTraceAsString(); ?></pre>
+		
+		<h2>Request Parameters:</h2>
+  		<pre><?php echo var_export($this->request->getParams(), 1); ?></pre>
+<?php
+	    }
+	}
+?>
+</div>

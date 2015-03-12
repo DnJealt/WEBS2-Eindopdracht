@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Rename.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /**
@@ -27,7 +27,7 @@ require_once 'Zend/Filter/Interface.php';
 /**
  * @category   Zend
  * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_File_Rename implements Zend_Filter_Interface
@@ -61,7 +61,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
             require_once 'Zend/Filter/Exception.php';
             throw new Zend_Filter_Exception('Invalid options argument provided to filter');
         }
-
+        
         if (1 < func_num_args()) {
             $argv = func_get_args();
             array_shift($argv);
@@ -142,11 +142,6 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
     public function getNewName($value, $source = false)
     {
         $file = $this->_getFileName($value);
-        
-        if (!is_array($file) || !array_key_exists('source', $file) || !array_key_exists('target', $file)) {
-            return $value;
-        }
-        
         if ($file['source'] == $file['target']) {
             return $value;
         }
@@ -183,7 +178,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      */
     public function filter($value)
     {
-        $file   = $this->getNewName($value, true);
+    	$file   = $this->getNewName($value, true);
         if (is_string($file)) {
             return $file;
         }

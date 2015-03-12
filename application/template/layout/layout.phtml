@@ -1,0 +1,110 @@
+<?php echo $this->doctype(); ?>
+<html lang="nl">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta charset="utf-8">
+		
+		<meta name="author" content="Avans Hogeschool" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		
+		<link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->baseUrl('public/images/favicon.ico'); ?>" />
+		<link rel="apple-touch-icon" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-57-precomposed.png'); ?>" />
+		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-72-precomposed.png'); ?>" />
+		<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-114-precomposed.png'); ?>" />
+		<link rel="apple-touch-icon" sizes="144x144" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-144-precomposed.png'); ?>" />
+
+		<?php
+			$settingModel = new Model_Setting();
+
+			$siteTitle = $this->escape($settingModel->getSettings('siteTitle'));
+
+			$this->headTitle()->prepend($siteTitle);
+			echo $this->headTitle()->setSeparator(' - ') . PHP_EOL;
+
+			echo $this->headMeta() . PHP_EOL;
+
+			echo $this->headLink()->prependStylesheet($this->baseUrl('public/css/hover-min.css'))
+								  ->prependStylesheet($this->baseUrl('public/css/main.css'))
+								  ->prependStylesheet($this->baseUrl('public/css/font-awesome.min.css'))
+								  ->prependStylesheet($this->baseUrl('public/css/bootstrap-theme.min.css'))
+								  ->prependStylesheet($this->baseUrl('public/css/bootstrap.min.css')) . PHP_EOL;
+								 // ->prependStylesheet($this->baseUrl('public/css/font-awesome-ie7.min.css'), array('conditional' => 'lt IE 9'))
+
+            $navigationConfig   = new Zend_Config_Xml(APPLICATION_PATH . '/template/layout/_default_menu.xml');
+            $acl                = new Avans_Acl();
+
+            $isLoggedIn         = Avans_Auth::hasIdentity();
+            $roleId             = $isLoggedIn ? Avans_Auth::getIdentity()->role : 3;
+
+            echo $settingModel->getSettings('googleAnalytics');
+        ?>
+	</head>
+	<body class="<?php echo $this->bodyClass; ?>">
+        <!--[if lt IE 8]>
+        <p class="browserupgrade">U gebruikt een <strong>verouderde</strong> browser. Update <a href="http://browsehappy.com/">uw browser</a>, zodat wij een betere ervaring kunnen leveren.</p>
+        <![endif]-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/SOSRommelmarkt/index.php"><img src="<?php echo $this->baseUrl('public/img/SOS_Logo_V3_Blue_withWhite.png'); ?>" height="100px" width="100px"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <?php
+                        $navTop = new Zend_Navigation($navigationConfig->nav_top);
+
+                        $pageMapper = new Page_Model_Mapper_Page();
+                        $aboutUs    = $navTop->findOneBy('label', 'Over ons');
+                        $pages      = array();
+
+                        echo $this->navigation($navTop)
+                            ->setAcl($acl)
+                            ->setRole((string) $roleId)
+                            ->menu()
+                            ->setPartial('_admin_menu_top.phtml');
+                    ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Tel: (073) 613 37 74</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container">
+            <?php echo $this->layout()->content; ?>
+        </div>
+
+        <footer>
+            <div class="container-fluid footer">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>&copy; 2015 SOS Rommelmarkt<br/>
+                            Ridderspoorstraat 2<br/>
+                            5212 XP 's-Hertogenbosch<br/>
+                            073-6133774 <a href="mailto:info@sosrommelmarkt.nl">info@sosrommelmarkt.nl</a><br><br>
+                            <a target="_blank" href="https://www.facebook.com/pages/SOS-rommelmarkt/359481534072417"><i class="fa fa-facebook-official fa-2x"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <?php
+        echo $this->headScript()->prependFile($this->baseUrl('public/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'))
+                                ->prependFile($this->baseUrl('public/js/main.js'))
+                                ->prependFile($this->baseUrl('public/js/vendor/bootstrap.min.js'))
+                                ->prependFile($this->baseUrl('public/js/vendor/jquery-1.11.2.min.js'))
+                                ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+                                ->prependFile('http://html5shim.googlecode.com/svn/trunk/html5.js', 'text/javascript', array('conditional' => 'lt IE 9')) . PHP_EOL;
+    ?>
+	</body>
+</html>

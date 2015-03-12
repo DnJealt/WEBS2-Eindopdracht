@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Dom
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Query.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /**
@@ -29,18 +29,12 @@ require_once 'Zend/Dom/Query/Css2Xpath.php';
  */
 require_once 'Zend/Dom/Query/Result.php';
 
-/** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
-
-/** @see Zend_Xml_Exception */
-require_once 'Zend/Xml/Exception.php';
-
 /**
  * Query DOM structures based on CSS selectors and/or XPath
  *
  * @package    Zend_Dom
  * @subpackage Query
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Dom_Query
@@ -85,8 +79,8 @@ class Zend_Dom_Query
     /**
      * Constructor
      *
-     * @param null|string $document
-     * @param null|string $encoding
+     * @param  null|string $document
+     * @return void
      */
     public function __construct($document = null, $encoding = null)
     {
@@ -130,10 +124,6 @@ class Zend_Dom_Query
         }
         // breaking XML declaration to make syntax highlighting work
         if ('<' . '?xml' == substr(trim($document), 0, 5)) {
-            if (preg_match('/<html[^>]*xmlns="([^"]+)"[^>]*>/i', $document, $matches)) {
-                $this->_xpathNamespaces[] = $matches[1];
-                return $this->setDocumentXhtml($document, $encoding);
-            }
             return $this->setDocumentXml($document, $encoding);
         }
         if (strstr($document, 'DTD XHTML')) {
@@ -239,8 +229,7 @@ class Zend_Dom_Query
      * Perform an XPath query
      *
      * @param  string|array $xpathQuery
-     * @param  string       $query CSS selector query
-     * @throws Zend_Dom_Exception
+     * @param  string $query CSS selector query
      * @return Zend_Dom_Query_Result
      */
     public function queryXpath($xpathQuery, $query = null)
@@ -260,15 +249,7 @@ class Zend_Dom_Query
         $type   = $this->getDocumentType();
         switch ($type) {
             case self::DOC_XML:
-                try {
-                    $domDoc = Zend_Xml_Security::scan($document, $domDoc);
-                    $success = ($domDoc !== false);
-                } catch (Zend_Xml_Exception $e) {
-                    require_once 'Zend/Dom/Exception.php';
-                    throw new Zend_Dom_Exception(
-                        $e->getMessage()
-                    );
-                }
+                $success = $domDoc->loadXML($document);
                 break;
             case self::DOC_HTML:
             case self::DOC_XHTML:
@@ -288,7 +269,7 @@ class Zend_Dom_Query
             throw new Zend_Dom_Exception(sprintf('Error parsing document (type == %s)', $type));
         }
 
-        $nodeList = $this->_getNodeList($domDoc, $xpathQuery);
+        $nodeList   = $this->_getNodeList($domDoc, $xpathQuery);
         return new Zend_Dom_Query_Result($query, $xpathQuery, $domDoc, $nodeList);
     }
 

@@ -1,0 +1,74 @@
+<?php
+    /**
+     * @var $role Permission_Model_Role
+     */
+    echo $this->flashMessages();
+
+    $role = $this->role;
+?>
+<div class="alert-message info">
+	<h3>Bewerk permissies</h3>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" role="form" method="post" action="">
+        <?php
+            $currentModule = '';
+            foreach(Avans_Module::getInstance()->getModules() as $module)
+            {
+                echo '<div class="widget">';
+                if($module != $currentModule)
+                {
+                    echo '<div class="widget-head"><strong>Module:</strong> ' . ucfirst($module->getModuleName()) . '</div>' . PHP_EOL;
+
+                    $currentModule = $module;
+                }
+
+                echo '<div class="widget-content">';
+                echo '<div class="padd">';
+                foreach($module->getControllers() as $controller)
+                {
+                    echo '<table><tr><td style="width: 225px;"><h4><strong>Controller: ' . $controller->getLangKey() . '</strong></h4></td>';
+                    echo '</tr></table><hr />';
+                    foreach($controller->getActions() as $action)
+                    {
+                        /**
+                         * @var Model_Action $action
+                         */
+                        if ($action->getLangKey() == 'controllerLangKey') continue;
+                        echo '<div class="form-group"><label class="col-lg-2 control-label">' . ucfirst($action->getLangKey()) . '</label>' . PHP_EOL;
+
+                        $permission = array(
+                            'resource'	=> $controller->getResource(),
+                            'privilege'	=> $action->getKey(),
+                        );
+
+                        $checked = false;
+                        if(isset($this->permissions[$role->getId()]) && in_array($permission, $this->permissions[$role->getId()]))
+                        {
+                            $checked = true;
+                        }
+
+                        $disabled = 'enabled';
+                        if(!$action->isEditAble()){
+                            $disabled = 'disabled';
+                        }
+
+                        echo '<div class="col-lg-5"><label class="checkbox-inline"> ' . $this->formCheckbox('permissions[' . $role->getId() . '][]',
+                            htmlentities(Zend_Json_Encoder::encode($permission)),
+                            array('id' => $permission['resource'] . '_' . $permission['privilege'], 'checked' => $checked, $disabled => $disabled)
+                        ) . '</label></div></div>' . PHP_EOL;
+                    }
+                }
+                echo '</div></div><div class="widget-foot"></div></div>';
+            }
+        ?>
+
+        <div class="form-actions">
+            <input type="submit" name="submit" id="submit" value="Opslaan" class=" btn btn-primary btn-block" />
+        </div>
+        </form>
+    </div>
+</div>

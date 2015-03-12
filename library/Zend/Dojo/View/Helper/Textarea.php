@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Dojo
  * @subpackage View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version    $Id: Textarea.php 23777 2011-03-01 18:26:05Z matthew $
  */
 
 /** Zend_Dojo_View_Helper_Dijit */
@@ -29,7 +29,7 @@ require_once 'Zend/Dojo/View/Helper/Dijit.php';
  * @uses       Zend_Dojo_View_Helper_Dijit
  * @package    Zend_Dojo
  * @subpackage View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
   */
 class Zend_Dojo_View_Helper_Textarea extends Zend_Dojo_View_Helper_Dijit
@@ -61,8 +61,9 @@ class Zend_Dojo_View_Helper_Textarea extends Zend_Dojo_View_Helper_Dijit
      * @param  array $attribs HTML attributes
      * @return string
      */
-    public function textarea($id, $value = null, array $params = array(), array $attribs = array())
+    public function textarea($id, $value = null, array $params = array(), $attribs = array())//array $attribs = array()
     {
+		$attribs = (array) $attribs;
         if (!array_key_exists('id', $attribs)) {
             $attribs['id']    = $id;
         }

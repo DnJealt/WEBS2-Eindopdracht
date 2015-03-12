@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-8">
+        <?php
+            foreach (range(1, 6) as $i){
+                if ($i % 3 == 1) echo '<div class="row">';
+                ?>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="<?php echo $this->baseUrl('public/img/tile.png'); ?>" alt="Bied direct op dit veiling element">
+                        <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>...</p>
+                            <p>
+                                <a href="auction-detail.php" class="btn btn-danger" role="button">Bekijken</a>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Direct bieden</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                if ($i % 3 == 0) echo '</div>';
+            }
+        ?>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <h2>Hoe werkt bieden</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse nec egestas urna, sed pretium velit.
+        </p>
+        <a class="btn btn-danger" href="work.html">Bekijk de FAQ</a>
+
+        <h2>Contact</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse nec egestas urna, sed pretium velit.
+        </p>
+        <a class="btn btn-danger" href="work.html">Contact opnemen</a>
+    </div>
+</div>

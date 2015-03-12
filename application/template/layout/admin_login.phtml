@@ -1,0 +1,58 @@
+<?php echo $this->doctype(); ?>
+<html lang="nl">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta charset="utf-8">
+		
+		<meta name="author" content="Avans Hogeschool" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		
+		<link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->baseUrl('public/images/favicon.ico'); ?>" />
+		<link rel="apple-touch-icon" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-57-precomposed.png'); ?>" />
+		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-72-precomposed.png'); ?>" />
+		<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-114-precomposed.png'); ?>" />
+		<link rel="apple-touch-icon" sizes="144x144" href="<?php echo $this->baseUrl('public/images/apple-touch-icon-144-precomposed.png'); ?>" />
+
+		<?php
+			$settingModel = new Model_Setting();
+
+			$siteTitle = $this->escape($settingModel->getSettings('siteTitle'));
+
+			$this->headTitle()->prepend($siteTitle);
+			echo $this->headTitle()->setSeparator(' - ') . PHP_EOL;
+
+			echo $this->headMeta() . PHP_EOL;
+
+			echo $this->headLink()->prependStylesheet($this->baseUrl('public/backend/css/bootstrap.css'))
+								  ->prependStylesheet($this->baseUrl('public/backend/css/font-awesome.css'))
+								  ->prependStylesheet($this->baseUrl('public/backend/css/style.css'))
+								  ->prependStylesheet($this->baseUrl('public/css/blue.css'))
+								  ->prependStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:400,600')
+								  ->prependStylesheet($this->baseUrl('public/backend/css/bootstrap-responsive.css')) . PHP_EOL;
+								 // ->prependStylesheet($this->baseUrl('public/css/font-awesome-ie7.min.css'), array('conditional' => 'lt IE 9'))
+
+			echo $this->headScript()->prependFile($this->baseUrl('public/js/jquery.js'))
+									->prependFile($this->baseUrl('public/backend/js/bootstrap.js'))
+									->prependFile($this->baseUrl('public/js/jquery.isotope.js'))
+									->prependFile($this->baseUrl('public/backend/js/custom.js'))
+									->prependFile('http://html5shim.googlecode.com/svn/trunk/html5.js', 'text/javascript', array('conditional' => 'lt IE 9')) . PHP_EOL;
+
+			echo $settingModel->getSettings('googleAnalytics');
+		?>
+	</head>
+	<body>
+		<div class="admin-form">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<?php
+							echo $this->layout()->content;
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

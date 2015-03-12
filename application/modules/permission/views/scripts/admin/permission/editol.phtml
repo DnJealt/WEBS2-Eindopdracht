@@ -1,0 +1,94 @@
+<?php echo $this->flashMessages(); ?>
+
+<div class="alert alert-block alert-info">
+    <?php echo $this->translate('permission_view_admin_permission_edit_save'); ?>
+</div>
+
+<div class="block-header info">
+    <h3><?php echo $this->translate('permission_view_admin_permission_edit_title'); ?></h3>
+</div>
+
+<form method="post" action="<?php echo $this->url(); ?>" id="permissions">
+    <div class="form-horizontal">
+        <fieldset>
+            <?php
+            $roles = $this->roles;
+            $currentModule = '';
+
+            $dataRoles = '<div class="well control-group"><label class="control-label"></label>';
+            foreach($roles as $role)
+            {
+                $dataRoles .= '<div class="checkbox-holder t-vert">' . $this->escape($role->getName()) . '</div>';
+            }
+            $dataRoles .= '</div>' . PHP_EOL;
+
+            foreach(Avans_Module::getInstance()->getModules() as $module)
+            {
+                if($module != $currentModule)
+                {
+                    echo '<div class="well"><strong>' . $this->translate('permission_module') . '</strong>' . $this->translate($module->getModuleName()) . '</div>' . PHP_EOL;
+                    $currentModule = $module;
+                }
+
+                foreach($module->getControllers() as $controller)
+                {
+                    echo '<div class="row-fluid"><div class="alert alert-info span9">' . $this->translate($controller->getLangKey()) . '</div><div class="alert alert-info span3">' . $this->translate($module->getModuleName()) . '</div></div>' . PHP_EOL;
+                    echo $dataRoles;
+
+                    foreach($controller->getActions() as $action)
+                    {
+                        echo '<div class="control-group">
+								<label class="control-label">' . $this->translate($action->getLangKey()) . '</label>' . PHP_EOL;
+
+                        echo '<div class="controls">';
+
+                        foreach($roles as $role)
+                        {
+                            $permission = array(
+                                'resource'	=> $controller->getResource(),
+                                'privilege'	=> $action->getKey(),
+                                'roleId'    => $role->getId()
+                            );
+
+                            $checked = false;
+                            /*foreach($this->permissions as $perm)
+                            {
+                                if($perm->getResource() == $permission['resource'] && $perm->getPrivilege() == $permission['privilege'] && $role->getId() == $perm->getRoleId())
+                                {
+                                    $checked = true;
+                                    break;
+                                }
+                            }*/
+
+                            $attribs = array(
+                                'id' => $role->getId() . '_' . $permission['resource'] . '_' . $permission['privilege'],
+                                'checked' => $checked
+                            );
+
+                            if($action->isEditAble() == false)
+                            {
+                                $attribs['disabled'] = 'disabled';
+                            }
+
+                            echo '<div class="checkbox-holder">' .
+                                $this->formCheckbox('permissions[' . $role->getId() . '][]',
+                                    htmlentities(Zend_Json_Encoder::encode($permission)),
+                                    $attribs
+                                ) . '</div>';
+                        }
+
+                        echo '</div>
+							</div>' . PHP_EOL;
+                    }
+                }
+            }
+            ?>
+
+            <?php// echo $this->formHash('csrf'); ?>
+
+            <!--<div class="form-actions">
+				<?php //echo $this->formSubmit('submit', $this->translate('default_form_submit'), array('class' => 'btn btn-primary')); ?>
+			</div>-->
+        </fieldset>
+    </div>
+</form>

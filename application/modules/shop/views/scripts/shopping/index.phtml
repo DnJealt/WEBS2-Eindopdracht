@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="row text-center">
+            <h2>Webshop</h2>
+            <?php
+                foreach (range(1, 8) as $i){
+                    if ($i % 4 == 1) echo '<div class="row">';
+                    ?>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="<?php echo $this->baseUrl('public/img/tile.png'); ?>" alt="Product">
+                            <div class="caption">
+                                <p>Lorum ipsem</p>
+                                <p>...</p>
+                                <p>
+                                    <a href="#" class="btn btn-danger" role="button">Bekijk</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    if ($i % 4 == 0) echo '</div>';
+                }
+            ?>
+        </div>
+        <div class="row text-center">
+            <nav>
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <div class="row">
+            <h2>Producten filteren</h2>
+            <form>
+                <div class="form-group form-group-sm">
+                    <label for="txtSearch">Zoeken</label>
+                    <input type="search" class="form-control" id="txtSearch" placeholder="Zoeken">
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtMinimalPrice">Minimale prijs</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">€</div>
+                        <input type="number" step="5" class="form-control" id="txtMinimalPrice" placeholder="Minimale prijs">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtMaximalPrice">Maximale prijs</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">€</div>
+                        <input type="number" step="5" class="form-control" id="txtMaximalPrice" placeholder="Maximale prijs">
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="ddlCategory">Categorie</label>
+                    <select class="form-control" id="ddlCategory">
+                        <option selected="true">Geen</option>
+                        <option>Antieke meubels</option>
+                        <option>Elektronica</option>
+                        <option>Tuin gereedschap</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <div class="row">
+            <h2>Hoe winkel ik</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse nec egestas urna, sed pretium velit.
+            </p>
+            <a class="btn btn-danger" href="work.html">Bekijk de FAQ</a>
+        </div>
+        <div class="row">
+            <h2>Contact</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse nec egestas urna, sed pretium velit.
+            </p>
+            <a class="btn btn-danger" href="work.html">Contact opnemen</a>
+        </div>
+    </div>
+</div>
