@@ -1,4 +1,10 @@
-
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop <span class="caret"></span></a>-->
+<!--                    <ul class="dropdown-menu" role="menu">-->
+<!--                        <li><a href="/SOSRommelmarkt/pages/shop.php">Winkelen</a></li>-->
+<!--                        <li><a href="/SOSRommelmarkt/pages/auction.php">Vitrine</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
 <!--[if lt IE 8]>
 <p class="browserupgrade">U gebruikt een <strong>verouderde</strong> browser. Update <a href="http://browsehappy.com/">uw browser</a>, zodat wij een betere ervaring kunnen leveren.</p>
@@ -27,13 +33,9 @@
                         <li><a href="/WEBS2-Eindopdracht/view/organisation.php">Organisatie</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/SOSRommelmarkt/pages/shop.php">Winkelen</a></li>
-                        <li><a href="/SOSRommelmarkt/pages/auction.php">Vitrine</a></li>
-                    </ul>
-                </li>
+                <li><a href="/WEBS2-Eindopdracht/view/shop.php">Winkel</a> </li>
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Diensten <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
