@@ -6,9 +6,9 @@
  * @version 1.0.0
  */
 
-class News_IndexController extends Zend_Controller_Action
+class Shop_CartController extends Zend_Controller_Action
 {
-    const controllerLangKey     = "Nieuws";
+    const controllerLangKey     = "Winkelwagen";
     const indexActionLangKey    = "Overzicht";
 
     /**
@@ -19,6 +19,10 @@ class News_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $settingModel = new Model_Setting();
+
+    }
+
+    public function shoppingAction(){
 
     }
 }

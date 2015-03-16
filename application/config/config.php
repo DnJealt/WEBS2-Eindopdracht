@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-define('SITE_URL', 'http://www.sosrommelmarkt.nl');
+define('SITE_URL', 'http://localhost/WEBS2-Eindopdracht/');
 
 return array_merge_recursive(array(
     'bootstrap' => array(
@@ -47,11 +47,11 @@ return array_merge_recursive(array(
 		'multidb' => array(
         	'default' 	=> array(
 	        	'adapter' 	=> 'mysqli',
-				'host' 		=> 'localhost',
+				'host' 		=> 'databases.aii.avans.nl',
 		        'port' 		=> '3306', // Default port is 3306
-				'username' 	=> 'root',
-				'password' 	=> '',
-				'dbname' 	=> 'sosrommelmarkt',
+				'username' 	=> 'jlmtartw',
+				'password' 	=> 'Ab12345',
+				'dbname' 	=> 'jlmtartw_db',
 				'prefix' 	=> '',
 				'charset' 	=> 'utf8',
         		'default'	=> true

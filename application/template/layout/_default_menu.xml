@@ -4,13 +4,7 @@
     	<page_home>
     		<label>Home</label>
     		<route>default-index-index</route>
-    	</page_home>
-        <page_news>
-            <label>Nieuws</label>
-            <route>news-index-index</route>
-            <resource>news_index</resource>
-            <privilege>index</privilege>
-        </page_news>
+    	</page_home>        
         <page_aboutus>
             <label>Over ons</label>
             <uri>#</uri>
@@ -37,12 +31,12 @@
                     <resource>shop_shopping</resource>
                     <privilege>index</privilege>
                 </page_shop_shopping>
-                <page_shop_vitrine>
-                    <label>Vitrine</label>
-                    <route>shop-showcase-index</route>
-                    <resource>shop_showcase</resource>
+                <page_shop_cart>
+                    <label>Winkelwagen</label>
+                    <route>shop-cart-shopping</route>
+                    <resource>shop_cart</resource>
                     <privilege>index</privilege>
-                </page_shop_vitrine>
+                </page_shop_cart>
             </pages>
         </page_shop>
         <page_services>

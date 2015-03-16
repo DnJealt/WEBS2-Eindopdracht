@@ -22,6 +22,8 @@ class Avans_Controller_Plugin_Auth extends Zend_Controller_Plugin_Abstract
 		$roleId = $isLoggedIn ? Avans_Auth::getIdentity()->role : 3;
 		
 		$acl = new Avans_Acl();
+		
+		
 
 	    if($acl->has($resource) && $acl->isAllowed($roleId, $resource, $request->getActionName()))
         {

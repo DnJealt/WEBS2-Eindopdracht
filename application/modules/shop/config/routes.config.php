@@ -16,7 +16,7 @@ return array(
  			'action' 		=> 'index'
  		)
  	),
- 	'shop-showcase-index' => array(
+ 	'shop-cart-index' => array(
  		'type'		=> 'Zend_Controller_Router_Route_Static',
  		'route' 	=> 'vitrine',
  		'defaults' 	=> array(
@@ -25,4 +25,13 @@ return array(
  			'action' 		=> 'index'
  		)
  	),
+	'shop-cart-shopping' => array(
+ 		'type'		=> 'Zend_Controller_Router_Route_Static',
+ 		'route' 	=> 'winkelwagen/:user',
+ 		'defaults' 	=> array(
+ 			'module' 		=> 'shop',
+ 			'controller' 	=> 'cart',
+ 			'action' 		=> 'shopping'
+ 		)
+	),
 );

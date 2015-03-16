@@ -22,14 +22,14 @@ class Permission_Model_Mapper_Role extends Avans_Model_Mapper_Abstract implement
 	public function persist(Permission_Model_Role $role)
 	{
 		$data = array(
-			'roleName'	=> $role->getName()
+			'name'	=> $role->getName()
 		);
 		
 		$db = $this->getAdapter();
 		if($role->getId() > 0)
 		{
 			$db->update($this->getTableName(), $data,
-				$db->quoteInto('roleId = ?', $role->getId())
+				$db->quoteInto('id = ?', $role->getId())
 			);
 		}
 		else
@@ -52,7 +52,7 @@ class Permission_Model_Mapper_Role extends Avans_Model_Mapper_Abstract implement
 			$db = $this->getAdapter();
 			
 			$db->delete($this->getTableName(),
-				$db->quoteInto('roleId = ?', $role->getId())
+				$db->quoteInto('id = ?', $role->getId())
 			);
 		}
 	}
