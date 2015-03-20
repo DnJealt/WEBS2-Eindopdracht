@@ -74,6 +74,6 @@ return [
 	|
 	*/
 
-	'prefix' => 'WEBS2-Eindopdracht',
+	'prefix' => 'laravel',
 
 ];

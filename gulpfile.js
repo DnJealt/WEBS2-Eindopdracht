@@ -1,4 +1,4 @@
-var elixir = require('WEBS2-Eindopdracht-elixir');
+var elixir = require('laravel-elixir');
 
 /*
  |--------------------------------------------------------------------------
