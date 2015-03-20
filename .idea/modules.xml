@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WEBS2-Eindopdracht.iml" filepath="$PROJECT_DIR$/.idea/WEBS2-Eindopdracht.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WEBS2-Eindopdracht/.idea/WEBS2-Eindopdracht.iml" filepath="$PROJECT_DIR$/../WEBS2-Eindopdracht/.idea/WEBS2-Eindopdracht.iml" />
     </modules>
   </component>
 </project>
