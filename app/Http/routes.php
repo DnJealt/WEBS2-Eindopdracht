@@ -13,7 +13,7 @@
 
 
 //WelcomeController Route
-Route::get('/', 'WelcomeController@index');                     //basic standard view
+//Route::get('/', 'WelcomeController@index');                     //basic standard view
 
 //HomeController Routes
 Route::get('/', 'HomeController@index');                        //view not made, not finished
