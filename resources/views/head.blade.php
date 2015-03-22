@@ -13,11 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="../../public/img/apple-touch-icon.png">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/hover-min.css">
+    <link rel="stylesheet" href="/WEBS2-Eindopdracht/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/WEBS2-Eindopdracht/public/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/WEBS2-Eindopdracht/public/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/WEBS2-Eindopdracht/public/css/main.css">
+    <link rel="stylesheet" href="/WEBS2-Eindopdracht/public/css/hover-min.css">
 
     <script src="../../public/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>

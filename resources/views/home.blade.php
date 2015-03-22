@@ -87,41 +87,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <hr>
-            <h3>Laatste nieuws</h3>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <p><strong>SOS Rommelmarkt nu actief op boekwinkeltjes.nl!</strong></p>
-
-                    <p>SOS Rommelmarkt heeft een webshop geopend op boekwinkeltjes.nl.<br/>
-                        Onze online boekwinkel is te zien door de onderstaande link te volgen.<br><a target="_blank"
-                                                                                                     href="http://boekwinkeltjes.nl/bwzoeken.php?bwID=22317">Boekwinkeltjes.nl</a><br><br><a
-                                href="#">Lees meer</a></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p><strong>Geslaagde opening</strong></p>
-
-                    <p>
-                        Gisteren is ons nieuwe pand feestelijk in gebruik genomen. Wethouder Geert Snijders, onze
-                        voorzitter Jetty Eugster en Bart Eigeman, voorzitter van het PUB kregen van medewerkers delen
-                        van een sleutel. Samen konden ze de sleutel compleet maken, en na de woorden van wethouder Geert
-                        Snijders werd het pand dan ook officieel geopend.<br><br>
-                        <a href="#">Lees meer</a>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <p class="text-right"><a class="btn btn-danger" href="pages/news.php" role="button">Naar
-                        Nieuws &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
 </div>
 
 @include('footer')
