@@ -57,6 +57,16 @@ body {
     text-decoration: underline;
 }
 
+.onevending{
+    background-color: #28a4c9;
+
+}
+
+.evending{
+    background-color: #ffee99;
+
+}
+
 .navbar-brand {
     padding-top: 5px;
 }

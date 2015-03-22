@@ -1,5 +1,15 @@
+@include('head')
+<body>
+@include('header')
 
-<p> {{$products->prdName}} </p>
-<p> {{$products->prdPrice}} </p>
-<p> {{$products->prdSummary}} </p>
-<p> {{$products->prdDescription}} </p>
+<div class="container">
+
+    {{--<img src="img/productimg/{{$products->prdPicBig}}">--}}
+    <p> {{$products->prdName}} </p>
+    <p> {{$products->prdPrice}} </p>
+    <p> {{$products->prdSummary}} </p>
+    <p> {{$products->prdDescription}} </p>
+
+</div>
+@include('footer')
+

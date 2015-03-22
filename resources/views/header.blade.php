@@ -12,15 +12,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home"><img src="img/logo/CalveTella.png" height="100px" width="175px"></a>
+            <a class="navbar-brand" href=""><img src="img/logo/CalveTella.png" height="100px" width="175px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="home">Home</a></li>
+                <li><a href="">Home</a></li>
 
-                <li><a href="#shop">Shop</a></li>
+                <li><a href="product">Shop</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TBD <span class="caret"></span></a>

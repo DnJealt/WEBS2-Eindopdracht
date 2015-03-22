@@ -16,12 +16,12 @@
 //Route::get('/', 'WelcomeController@index');                     //basic standard view
 
 //HomeController Routes
-Route::get('/home', 'HomeController@index');                        //view not made, not finished
+Route::get('/', 'HomeController@index');                        //view not made, not finished
 Route::get('about', 'HomeController@about');                    //view not made, not finished
 Route::get('contact', 'HomeController@contact');                //view not made, not finished
 
 //ProductController Routes
-Route::get('productList', 'ProductController@index');           //view made, not finished
+Route::get('product', 'ProductController@index');           //view made, not finished
 Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not finished
 
 //CategorieController Routes
