@@ -112,6 +112,10 @@ section {
 .bezorgtable td {
     padding: 0 1em 0 0;
 }
+.login{
+    margin-right:2em;
+}
+
 
 .navbar-brand, .navbar-nav>li>a {
     text-shadow: none

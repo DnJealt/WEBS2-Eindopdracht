@@ -30,13 +30,11 @@
                     </ul>
                 </li>
 
-                <li><a href="#About">About</a></li>
-
-                <li><a href="#Contact">Contact</a></li>
+                <li><a href="about">About</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#login">login</a> </li>
+                <li><a class="login" href="#login" role="button">Login</a> </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
