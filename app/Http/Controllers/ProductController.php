@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Categorie;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -17,8 +18,9 @@ class ProductController extends Controller {
 	public function index()
 	{
         $allProducts = Product::all();
+        $categories = Categorie::all();
 
-		return view('productAll', array('products'=>$allProducts));
+		return view('productAll', array('products'=>$allProducts, 'categories'=>$categories));
 	}
 
 	/**

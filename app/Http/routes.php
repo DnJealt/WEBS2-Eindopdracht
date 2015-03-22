@@ -16,7 +16,7 @@
 //Route::get('/', 'WelcomeController@index');                     //basic standard view
 
 //HomeController Routes
-Route::get('/home', 'HomeController@index');                        //view not made, not finished
+Route::get('/', 'HomeController@index');                        //view not made, not finished
 Route::get('about', 'HomeController@about');                    //view not made, not finished
 Route::get('contact', 'HomeController@contact');                //view not made, not finished
 
