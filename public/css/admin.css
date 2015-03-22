@@ -1,0 +1,122 @@
+/*-------------------------------*/
+/*    Admin                      */
+/*-------------------------------*/
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-content{
+    margin-left: 10%;
+}
+
+.admin-navbar{
+    background-color: #EE2D24;
+    border-radius: 0;
+    /*    margin-bottom: 0;*/
+}
+
+.nav>li>a {
+    padding-left: 0;
+}
+
+.admin-sidebar {
+    background-color: #EE2D24;
+    width: 10%;
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    color: #fff;
+}
+
+.admin-sidebar dd, .admin-sidebar dt {
+    padding: 5px 25px 5px 10px;
+}
+
+.admin-sidebar dt {
+    background-color: #F15650;
+    font-size: 16px;
+}
+
+
+.admin-sidebar dd:hover {
+    background-color: #F15650;
+}
+.admin-sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn {
+    border: none;
+    border-radius: 0;
+    margin-bottom: 5px;
+}
+
+.btn-danger {
+    background-color:#EE2D24;
+}
+
+.btn-danger:hover {
+    background-color: #F15650;
+}
+
+.btn-success{
+    background-color: #00A652;
+}
+
+.btn-success:hover {
+    background-color: #11b800;
+}
+
+.btn-default {
+    background-color: #ccc;
+}
+
+thead {
+    background: #EE2D24;
+    color: #fff;
+}
+
+td {
+    border: none;
+}
+
+a {
+    color: #EE2D24;
+}
+
+.table-striped>tbody>tr:nth-child(odd) {
+    background-color: #FCD4D2;
+}
+
+.col-centered {
+    margin: 0 auto;
+    float: none;
+}
+
+.panel {
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #EE2D24;
+    margin-bottom: 10px;
+}
+
+.panel-default>.panel-heading {
+    background-color: #EE2D24;
+    color: #fff;
+    border: none;
+}
+
+.panel-heading {
+    border-radius: 0;
+
+}
+
+
+.form-control {
+    border-radius: 0;
+    border: 1px solid #EE2D24;
+}
