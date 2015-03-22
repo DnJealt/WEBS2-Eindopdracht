@@ -25,8 +25,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TBD <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="321">123#</a></li>
-                        <li><a href="321">231</a></li>
+                        <li><a href="{{URL::to('#')}}">123#</a></li>
+                        <li><a href="{{URL::to('#')}}">231</a></li>
                     </ul>
                 </li>
 
@@ -34,7 +34,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="login" href="#login" role="button">Login</a> </li>
+                <li><a class="login" href="{{URL::to('#login')}}" role="button">Login</a> </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
