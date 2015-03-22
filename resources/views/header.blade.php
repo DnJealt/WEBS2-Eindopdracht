@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home"><img src="../../public/img/logo/#" height="100px" width="100px"></a>
+            <a class="navbar-brand" href="home"><img src="img/logo/CalveTella.png" height="100px" width="175px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
