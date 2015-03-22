@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <h2>CalveTella</h2>
 
-            <p>CalveTella is een site waar wij al uw broodsmeersel aanbieden.</p>
+            <p>CalveTella is een site waar wij al uw broodsmeersel aanbieden. Het liefst Calvé en Nutella</p>
 
             <p class="text-right">
                 <a class="btn btn-danger" href="about" role="button">

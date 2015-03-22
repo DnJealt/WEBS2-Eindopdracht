@@ -2,38 +2,61 @@
 <body>
 @include('header')
 
-<div class="container-fluid">
+<div class="container">
 
     <div class="row">
 
         <div class="col-md-offset-1">
 
             @foreach($products as $items)
-
-                <a href="productDetail/{{$items->prdId}}">
+                <div class="row">
                     @if($items->prdId % 2 == 0)
-                    <div class="evending">
-                        <p> {{$items->prdName}}    </p>
-                        <p> {{$items->prdPrice}}    </p>
-                        <p> {{$items->prdSummary}}    </p>
-                        <p> {{$items->prdDescription}}    </p>
-                    </div>
-                    @else
-                        <div class="onevending">
-                            <p> {{$items->prdName}}    </p>
-                            <p> {{$items->prdPrice}}    </p>
-                            <p> {{$items->prdSummary}}    </p>
-                            <p> {{$items->prdDescription}}    </p>
-                        </div>
-                    @endif
 
-                </a>
+                        <a href="productDetail/{{$items->prdId}}">
+                            <div class="evending">
+                                <div class="col-md-1">
+                                    <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}">
+                                </div>
+                                <div class="col-md-offset-5">
+                                    <p> {{$items->prdName}}    </p>
+                                    <p> Prijs: €{{$items->prdPrice}}    </p>
+                                    <p> {{$items->prdSummary}}    </p>
+                                    <br>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    @else
+
+                        <a href="productDetail/{{$items->prdId}}">
+                            <div class="onevending">
+                                <div class="col-md-1">
+                                    <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}">
+                                </div>
+                                <div class="col-md-offset-5">
+                                    <p> {{$items->prdName}}    </p>
+                                    <p> Prijs: €{{$items->prdPrice}}    </p>
+                                    <p> {{$items->prdSummary}}    </p>
+                                    <br>
+
+                                </div>
+
+                            </div>
+                        </a>
+
+
+                    @endif
+                </div>
+
+
 
                 <p></p>
 
             @endforeach
 
         </div>
+    </div>
 
     </div>
 
@@ -41,7 +64,12 @@
 
 
 
-</div>
+
+
+
+
+
+
 @include('footer')
 
 
