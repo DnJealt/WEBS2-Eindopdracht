@@ -3,7 +3,7 @@
         <div class="row">
             <div class="footer col-md-12 text-center">
                 <p>
-                    &copy; 2015 Calvetalla bv<br/>
+                    &copy; 2015 Calvetella bv<br/>
                 </p>
             </div>
         </div>
