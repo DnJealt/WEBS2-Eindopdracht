@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    {{--<img src="img/productimg/{{$products->prdPicBig}}">--}}
+    <img src="/public/img/productimg/{{$products->prdPicBig}}">
     <p> {{$products->prdName}} </p>
     <p> {{$products->prdPrice}} </p>
     <p> {{$products->prdSummary}} </p>
