@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="home">Home</a></li>
 
-                <li><a href="#shop">Shop</a></li>
+                <li><a href="product">Shop</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TBD <span class="caret"></span></a>
