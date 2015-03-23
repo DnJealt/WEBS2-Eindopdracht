@@ -7,26 +7,57 @@
         <!-- Example row of columns -->
         <div class="row">
             <div class="col-md-8">
+                <div class="register">
+                    <h1>Register</h1>
+                    <form method="post" action="register">
+                        <table>
+                            <tr>
+                                <th>
+                                    <p><input type="text" name="email" value="" placeholder="Email" required></p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p><input type="password" name="password" value="" placeholder="Password" required></p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <p><input type="password" name="password" value="" placeholder="Re-enter Password" required></p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    
+                                </th>
+                                <th>
+                                    <p class="submit"><input type="submit" name="commit" value="register"></p>
+                                </th>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
 
-                {{ FORM::open(array('url' => 'login')) }}
-                <h1>Login</h1>
+
+                {{--{{ FORM::open(array('url' => 'login')) }}--}}
+                {{--<h1>Login</h1>--}}
                 {{--show errors--}}
-                <p>
-                    {{ $errors->first('email') }}
-                    {{ $errors->first('password') }}
-                </p>
-                <p>
-                    {{ FORM::label('email', 'Email Address') }}
-                    {{ FORM::text('email', Input::old('email'), array('placeholder' => 'email@email.com')) }}
-                </p>
-                <p>
-                    {{ FORM::label('password', 'Pasword') }}
-                    {{ FORM::password('password') }}
-                </p>
-                <p>
-                    {{ FORM::submit('Submit') }}
-                </p>
-                {{ FORM::close() }}
+                {{--<p>--}}
+                    {{--{{ $errors->first('email') }}--}}
+                    {{--{{ $errors->first('password') }}--}}
+                {{--</p>--}}
+                {{--<p>--}}
+                    {{--{{ FORM::label('email', 'Email Address') }}--}}
+                    {{--{{ FORM::text('email', Input::old('email'), array('placeholder' => 'email@email.com')) }}--}}
+                {{--</p>--}}
+                {{--<p>--}}
+                    {{--{{ FORM::label('password', 'Pasword') }}--}}
+                    {{--{{ FORM::password('password') }}--}}
+                {{--</p>--}}
+                {{--<p>--}}
+                    {{--{{ FORM::submit('Submit') }}--}}
+                {{--</p>--}}
+                {{--{{ FORM::close() }}--}}
             </div>
         </div>
     </div>
