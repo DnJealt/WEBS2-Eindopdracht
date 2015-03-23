@@ -21,15 +21,17 @@ Route::get('about', 'HomeController@about');                    //view not made,
 Route::get('contact', 'HomeController@contact');                //view not made, not finished
 
 //ProductController Routes
-Route::get('product', 'ProductController@index');           //view made, not finished
+Route::get('product', 'ProductController@index');               //view made, not finished
 Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not finished
 
 //CategorieController Routes
 
 
 //UserController Routes
-Route::get('login', 'UserController@login');                    //view not made, not finished
-Route::get('register', 'UserController@register');              //view not made, not finished
+Route::get('login', 'UserController@getLogin');                 //view made, not finished
+Route::post('login', 'UserController@postLogin');               //not finished
+Route::get('register', 'UserController@getRegister');           //view made, not finished
+Route::post('register', 'UserController@postRegister');         //not finished
 
 //AdminController Routes
 Route::get('CMS', 'AdminController@index');                     //view not made, not finished

@@ -34,7 +34,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="login" href="{{URL::to('#login')}}" role="button">Login</a> </li>
+                <li><a class="login" href="{{URL::to('login')}}" role="button">Login</a> </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
