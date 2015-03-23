@@ -14,7 +14,7 @@
 
                         <a href="productDetail/{{$items->prdId}}">
                             <div class="evending">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}">
                                 </div>
                                 <div class="col-md-offset-5">
@@ -31,7 +31,7 @@
 
                         <a href="productDetail/{{$items->prdId}}">
                             <div class="onevending">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}">
                                 </div>
                                 <div class="col-md-offset-5">
