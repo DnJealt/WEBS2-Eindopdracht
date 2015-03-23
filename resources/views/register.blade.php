@@ -13,22 +13,25 @@
                         <table>
                             <tr>
                                 <th>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <p><input type="text" name="email" value="" placeholder="Email" required></p>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <p><input type="password" name="password" value="" placeholder="Password" required></p>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    <p><input type="password" name="password" value="" placeholder="Re-enter Password" required></p>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <p><input type="password" name="password" value="" placeholder="Confirm Password" required></p>
                                 </th>
                             </tr>
                             <tr>
                                 <th>
-                                    
+
                                 </th>
                                 <th>
                                     <p class="submit"><input type="submit" name="commit" value="register"></p>

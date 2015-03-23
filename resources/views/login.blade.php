@@ -10,7 +10,7 @@
 
                 <div class="login">
                     <h1>Login</h1>
-                    <form method="post" action="login">
+                    <form method="post" action="{{URL::to('product')}}">
                         <table>
                             <tr>
                                 <th>
@@ -26,12 +26,14 @@
                                 <th>
                                     <p class="remember_me">
                                         <label>
-                                            <input type="checkbox" name="remember_me" id="remember_me">
+                                            <input type="checkbox" name="remember" id="remember">
                                             Remember me
                                         </label>
                                     </p>
                                 </th>
                                 <th>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                     <p class="submit"><input type="submit" name="commit" value="login"></p>
                                 </th>
                             </tr>
