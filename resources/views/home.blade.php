@@ -24,7 +24,7 @@
 
                 <div class="panel-body">
                     <div class="row">
-                        <img src="/WEBS2-Eindopdracht/public/img/productimg/pindakaasBig.png" width="100%" height="100%" alt="Shop product">
+                        <img src="/WEBS2-Eindopdracht/public/img/productimg/pindakaasBig.png" width="20%" height="20%" alt="Shop product">
                     </div>
                     <div class="row">
                         <p>Product van de maand!</p>
