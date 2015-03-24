@@ -18,20 +18,16 @@ class UserController extends Controller {
     public function postLogin(Request $request)
     {
         //Request::input(''); or Input::get('');
-        $email = $request->input('email');
+        $username = $request->input('username');
         $pass = $request->input('password');
         $remember = $request->input('remember');
-//        $credentials = [];
-//        $credentials['email'] = Request::input('email');
-//        $credentials['password'] = Request::input('password');
 
-//        $remember = false;
-//        if( Input::get($remember)){
-//            $remember = true;
-//        }
-       $this->validate($request, ['email' => 'required', 'password' => 'required']);
+        $this->validate($request, ['usrName' => 'required', 'usrPassword' => 'required']);
+        //validate messes something up
 
-        if(Auth::attempt(['email'=> $email, 'password' => $pass], $remember)){
+
+        if(Auth::attempt(['usrName'=> $username, 'usrPassword' => $pass], $remember)){
+
             return redirect('/');
         }
     }
