@@ -10,7 +10,7 @@
 
                 <div class="login">
                     <h1>Login</h1>
-                    <form method="post" action="{{URL::to('product')}}">
+                    <form method="post" action="{{URL::to('login')}}">
                         <table>
                             <tr>
                                 <th>

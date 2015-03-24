@@ -2,6 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Validator;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -16,23 +18,20 @@ class UserController extends Controller {
     public function postLogin(Request $request)
     {
         //Request::input(''); or Input::get('');
+        $email = $request->input('email');
+        $pass = $request->input('password');
+        $remember = $request->input('remember');
+//        $credentials = [];
+//        $credentials['email'] = Request::input('email');
+//        $credentials['password'] = Request::input('password');
 
+//        $remember = false;
+//        if( Input::get($remember)){
+//            $remember = true;
+//        }
+       $this->validate($request, ['email' => 'required', 'password' => 'required']);
 
-        $credentials = [];
-        $credentials = ['email'] = Request::input('email');
-        $credentials = ['password'] = Request::input('password');
-
-        $remember = false;
-        if( Input::get($remember)){
-            $remember = true;
-        }
-        $validate = Validator::make($credentials,['email' => 'required', 'password' => 'required']);
-
-        if($validate->fails()){
-            return redirect('login');
-        }
-
-        if(AUTH::attempt($credentials, $remember)){
+        if(Auth::attempt(['email'=> $email, 'password' => $pass], $remember)){
             return redirect('/');
         }
     }
