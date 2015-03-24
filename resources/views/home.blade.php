@@ -24,14 +24,14 @@
 
                 <div class="panel-body">
                     <div class="row">
-                        <img src="/WEBS2-Eindopdracht/public/img/productimg/pindakaasSmall.png" width="30%" height="30%" alt="Shop product">
+                        <img src="/WEBS2-Eindopdracht/public/img/productimg/pindakaasBig.png" width="100%" height="100%" alt="Shop product">
                     </div>
                     <div class="row">
                         <p>Product van de maand!</p>
                     </div>
 
                     <div class="row">
-                        <p><a class="btn btn-danger" href="{{URL::to('product')}}" role="button">Naar shop &raquo;</a>
+                        <p><a class="btn btn-danger" href="{{URL::to('productDetail/1')}}" role="button">Bestel nu &raquo;</a>
                         </p>
                     </div>
                 </div>
