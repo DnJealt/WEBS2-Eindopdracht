@@ -34,7 +34,11 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="login" href="{{URL::to('login')}}" role="button">Login</a> </li>
+                @if('!user =logged in'){{--not working yet--}}
+                    <li><a class="login" href="{{URL::to('login')}}" role="button">Login</a> </li>
+                @else
+                    <li><a class="cart" href="{{URL::to('cart')}}" role="button"><img src="img/logo/cartIcon.png" height="20px" weight="20px"></a> </li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
