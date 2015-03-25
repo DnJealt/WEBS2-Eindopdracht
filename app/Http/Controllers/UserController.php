@@ -22,14 +22,25 @@ class UserController extends Controller {
         $pass = $request->input('password');
         $remember = $request->input('remember');
 
-        $this->validate($request, ['usrName' => 'required', 'usrPassword' => 'required']);
+
+       // $this->validate($request, ['usrName' => 'required', 'password' => 'required']);
         //validate messes something up
 
+//        $pass = ;
+        Auth::loginUsingId(1);
 
-        if(Auth::attempt(['usrName'=> $username, 'usrPassword' => $pass], $remember)){
+//        if(Auth::attempt(['username'=> $username, 'password' => $pass], $remember)){
+//
+//            return redirect::to('/');
+//        }
+        return redirect('/');
+    }
 
-            return redirect('/');
-        }
+    public function logOut(){
+
+        Auth::logout();
+
+        return redirect()->back();
     }
 
     public function authorize(){
@@ -60,4 +71,5 @@ class UserController extends Controller {
 
         return Redirect::to('/');
     }
+
 }

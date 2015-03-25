@@ -9,6 +9,7 @@ body, html{
 
 footer{
     position: absolute;
+    width: 100%;
 }
 
 .block {

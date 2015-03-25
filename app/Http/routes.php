@@ -30,6 +30,7 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 //UserController Routes
 Route::get('login', 'UserController@getLogin');                 //view made, not finished
 Route::post('login', 'UserController@postLogin');               //not finished
+Route::get('logout', 'UserController@logout');
 Route::get('register', 'UserController@getRegister');           //view made, not finished
 Route::post('register', 'UserController@postRegister');         //not finished
 
