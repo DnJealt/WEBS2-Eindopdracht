@@ -1,19 +1,19 @@
 //Includes
-    head            done
-    header          partially done links need to be completed, logo needs to be changed
-    footer          done
+    head            finished
+    header          finished
+    footer          finished
 
 //HomeController
     Home            needs content
-    About           needs to be created
-    Contact         needs to be created
+    About           created, not finished
 
 //ProductController
-    ProductList     needs to be created
-    productdetail   needs to be created
+    ProductList     created, not finished, manly style
+    productdetail   created, not finished, manly style
 
 //UserController
-
+    Login           created, finished
+    register        created, not finished
 
 //AdminController
 

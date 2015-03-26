@@ -37,6 +37,9 @@
                 @if(!Auth::user()){{--not working yet--}}
                     <li><a class="login" href="{{URL::to('login')}}" role="button">Login</a> </li>
                 @else
+                        <li>logged in as: {{Auth::user()->username}}</li>
+
+
                     <li><a class="logout" href="{{URL::to('logout')}}" role="button">Log out</a> </li>
 
                     <li><a class="cart" href="{{URL::to('cart')}}" role="button"><img src="img/logo/cartIcon.png" height="20px" weight="20px"></a> </li>
