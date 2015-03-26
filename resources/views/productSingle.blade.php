@@ -8,7 +8,7 @@
     <div class="row">
 
         <div class="col-md-1">
-            <img src="{{ URL::to("/img/productimg/$products->prdPicBig") }}" width="480px" height="320px">
+            <img src="{{ URL::to("/img/productimg/$products->prdPicBig") }}"  height="480px" width="320px">
         </div>
         <div class="col-md-offset-8">
             <h2>{{$products->prdName}}</h2>
