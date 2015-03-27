@@ -16,24 +16,32 @@
 //Route::get('/', 'WelcomeController@index');                     //basic standard view
 
 //HomeController Routes
-Route::get('/', 'HomeController@index');                        //view not made, not finished
-Route::get('about', 'HomeController@about');                    //view not made, not finished
-Route::get('contact', 'HomeController@contact');                //view not made, not finished
+Route::get('/', 'HomeController@index');                        //view made, not finished
+Route::get('about', 'HomeController@about');                    //view made, not finished
+Route::get('contact', 'HomeController@contact');                //view made, not finished
 
 //ProductController Routes
 Route::get('product', 'ProductController@index');               //view made, not finished
 Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not finished
 
 //CategorieController Routes
+//Route::get('', '');
+//Route::post('', '');
+//Route::get('', '');
+//Route::post('', '');
+//Route::get('', '');
 
+//CartController Routes
+Route::get('cart', 'CartController@index');                                             //view not made, not finished
 
 //UserController Routes
-Route::get('login', 'UserController@getLogin');                 //view made, not finished
-Route::post('login', 'UserController@postLogin');               //not finished
-Route::get('logout', 'UserController@logout');
+Route::get('login', 'UserController@getLogin');                 //finished
+Route::post('login', 'UserController@postLogin');               //finished
+Route::get('logout', 'UserController@logout');                  //finished, calls action redirects back
 Route::get('register', 'UserController@getRegister');           //view made, not finished
 Route::post('register', 'UserController@postRegister');         //not finished
 
 //AdminController Routes
 Route::get('CMS', 'AdminController@index');                     //view not made, not finished
+//Route::get('', '');
 
