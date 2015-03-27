@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Validator;
+use \Redirect;
+use App\User;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -66,10 +68,32 @@ class UserController extends Controller {
         return view('register');
     }
 
-    public function postRegister(){
+    public function postRegister(Request $request){
+
+        User::where('username', '=', $request->input('username'))->first();
+
+        if(true) {
+            $user = new User();
+            $user->username = $request->input('username');
+            $user->password = $request->input('password');
+            $user->role_roleId = 3;
+
+            $user->save();
+
+            $this->postLogin($request);
+
+        }
+        else{
+            return Redirect::back();
+        }
 
 
-        return Redirect::to('/');
+
+
+
+        return ;
+
+//        return Redirect::to('/', $username);
     }
 
 }
