@@ -139,6 +139,10 @@ section {
     text-shadow: none
 }
 
+.logged_in_Name{
+    margin-top: 5%;
+}
+
 
 /*-------------------------------*/
 /*    Carousel Fade Transition   */

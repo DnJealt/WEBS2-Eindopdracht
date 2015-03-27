@@ -25,8 +25,7 @@ class UserController extends Controller {
         $username = $request->input('username');
         $pass = $request->input('password');
         $remember = $request->input('remember');
-
-        var_dump($username.' /|\ '.$pass);
+        //var_dump($username.' /|\ '.$pass);
 
         $logAttempt = DB::select("CALL Authentication('$username','$pass')");
 

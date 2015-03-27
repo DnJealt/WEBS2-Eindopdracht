@@ -34,10 +34,11 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                @if(!Auth::user())
+                @if(!Auth::user()) {{--working--}}
                     <li><a class="login" href="{{URL::to('login')}}" role="button">Login</a> </li>
                 @else
-                    <li>Logged</li>
+                    <li class="logged_in_Name">Logged in as: <b>{{Auth::User()->username}}</b></li>
+
                     <li><a class="logout" href="{{URL::to('logout')}}" role="button">Log out</a> </li>
 
                     <li><a class="cart" href="{{URL::to('cart')}}" role="button"><img src="img/logo/cartIcon.png" height="20px" weight="20px"></a> </li>
