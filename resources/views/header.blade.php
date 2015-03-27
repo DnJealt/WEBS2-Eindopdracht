@@ -34,7 +34,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                @if(!Auth::user()){{--not working yet--}}
+                @if(!Auth::user()){{--working--}}
                     <li><a class="login" href="{{URL::to('login')}}" role="button">Login</a> </li>
                 @else
                         <li>logged in as: {{Auth::user()->username}}</li>

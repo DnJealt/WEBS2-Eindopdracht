@@ -28,17 +28,14 @@ class UserController extends Controller {
 
         $logAttempt = DB::select("CALL Authentication('$username','$pass')");
 
-        if($logAttempt != -1 ||$logAttempt != -2)
+        if($logAttempt[0]->id >= 0)
         {
-            //var_dump($logAttempt[0]->id);
-
-            //var_dump($logAttempt);
-
             Auth::loginUsingId($logAttempt[0]->id);
 
             return redirect('/');
         }
         else {
+            //echo'niet bestaande gebruiker';
             return redirect()->back();
         }
     }
