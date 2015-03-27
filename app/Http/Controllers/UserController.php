@@ -4,6 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Validator;
 use Auth;
+use DB;
+use Hash;
 
 use Illuminate\Http\Request;
 
@@ -17,23 +19,28 @@ class UserController extends Controller {
 
     public function postLogin(Request $request)
     {
-        //Request::input(''); or Input::get('');
+//        //Request::input(''); or Input::get('');
         $username = $request->input('username');
         $pass = $request->input('password');
         $remember = $request->input('remember');
 
+        var_dump($username.' /|\ '.$pass);
 
-       // $this->validate($request, ['usrName' => 'required', 'password' => 'required']);
-        //validate messes something up
+        $logAttempt = DB::select("CALL Authentication('$username','$pass')");
 
-//        $pass = ;
-        Auth::loginUsingId(1);
+        if($logAttempt != -1 ||$logAttempt != -2)
+        {
+            //var_dump($logAttempt[0]->id);
 
-//        if(Auth::attempt(['username'=> $username, 'password' => $pass], $remember)){
-//
-//            return redirect::to('/');
-//        }
-        return redirect('/');
+            //var_dump($logAttempt);
+
+            Auth::loginUsingId($logAttempt[0]->id);
+
+            return redirect('/');
+        }
+        else {
+            return redirect()->back();
+        }
     }
 
     public function logOut(){
