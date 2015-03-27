@@ -32,14 +32,14 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 //Route::get('', '');
 
 //CartController Routes
-Route::get('cart', 'CartController@index');                                             //view not made, not finished
+Route::get('cart', 'CartController@index');                     //view not made, not finished
 
 //UserController Routes
 Route::get('login', 'UserController@getLogin');                 //finished
 Route::post('login', 'UserController@postLogin');               //finished
 Route::get('logout', 'UserController@logout');                  //finished, calls action redirects back
-Route::get('register', 'UserController@getRegister');           //view made, not finished
-Route::post('register', 'UserController@postRegister');         //not finished
+Route::get('register', 'UserController@getRegister');           //finished
+Route::post('register', 'UserController@postRegister');         //not finished, duplicate user not checked yet
 
 //AdminController Routes
 Route::get('CMS', 'AdminController@index');                     //view not made, not finished

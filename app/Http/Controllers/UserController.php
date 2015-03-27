@@ -21,49 +21,37 @@ class UserController extends Controller {
 
     public function postLogin(Request $request)
     {
+        if(!Auth::user()){
 //        //Request::input(''); or Input::get('');
-        $username = $request->input('username');
-        $pass = $request->input('password');
-        $remember = $request->input('remember');
-        //var_dump($username.' /|\ '.$pass);
+            $username = $request->input('username');
+            $pass = $request->input('password');
+            $remember = $request->input('remember');
+            //var_dump($username.' /|\ '.$pass);
 
-        $logAttempt = DB::select("CALL Authentication('$username','$pass')");
+            $logAttempt = DB::select("CALL Authentication('$username','$pass')");
 
-        if($logAttempt[0]->id >= 0)
-        {
-            Auth::loginUsingId($logAttempt[0]->id);
+            if($logAttempt[0]->id >= 0)
+            {
+                Auth::loginUsingId($logAttempt[0]->id);
 
-            return redirect('/');
-        }
-        else {
+                return redirect('/');
+            }
+            else {
             //echo'niet bestaande gebruiker';
+            return redirect()->back();
+            }
+        }
+        else{
             return redirect()->back();
         }
     }
 
-    public function logOut(){
-
-        Auth::logout();
-
-        return redirect()->back();
-    }
-
-    public function authorize(){
-
-        //only allow logged in users
-        //return \Auth::check();
-        //allows all users in
-        if(!Auth::check()){
-            return false;
+    public function logOut()
+    {
+        if (Auth::user()) {
+            Auth::logout();
         }
-
-        return true;
-    }
-
-    public function authenticate(){
-//        if(Auth::attempt(['usrEmail' => $email, 'usrPassword' => $password])){
-//            return redirect()->intended('login');
-//        }
+        return redirect()->back();
     }
 
     public function getRegister()
@@ -84,18 +72,11 @@ class UserController extends Controller {
             $user->save();
 
             $this->postLogin($request);
-
         }
         else{
             return Redirect::back();
         }
-
-
-
-
-
         return ;
-
 //        return Redirect::to('/', $username);
     }
 
