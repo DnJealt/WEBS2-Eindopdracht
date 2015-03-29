@@ -34,6 +34,8 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 //CartController Routes
 Route::get('cart', 'CartController@index');                     //view not made, not finished
 
+Route::post('addToCart/{id?}', 'CartController@addToCart');           //post method for adding product to session
+
 //UserController Routes
 Route::get('login', 'UserController@getLogin');                 //finished
 Route::post('login', 'UserController@postLogin');               //finished

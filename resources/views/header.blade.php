@@ -41,7 +41,7 @@
 
                     <li><a class="logout" href="{{URL::to('logout')}}" role="button">Log out</a> </li>
 
-                    <li><a class="cart" href="{{URL::to('cart')}}" role="button"><img src="img/logo/cartIcon.png" height="20px" weight="20px"></a> </li>
+                    <li><a class="cart" href="{{URL::to('cart')}}" role="button"><img src="/WEBS2-Eindopdracht/public/img/logo/cartIcon.png" height="20px" weight="20px"></a> </li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->

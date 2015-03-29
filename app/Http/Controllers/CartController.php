@@ -4,6 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class CartController extends Controller {
 
@@ -60,5 +62,33 @@ class CartController extends Controller {
         return redirect()->back();
     }
 
+    public function addToCart(Request $request, $id)
+    {
+        //var_dump($request->input($id));
+
+        Session::put
+
+
+        var_dump(Session::all());
+
+//        var_dump(Session::get(''));
+
+//        if(Auth::User())
+//        {
+//            if(! is_null($request->))
+//
+//
+//
+//
+//
+////            $cart = (array) Session::get('cart');
+////            $cart[] = $product;
+////
+////            Session::put('cart', $cart);
+//
+//            //Session::put('cart', "$product");
+//        }
+//        return redirect()->back();
+    }
 
 }

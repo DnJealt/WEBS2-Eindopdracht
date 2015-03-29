@@ -15,9 +15,15 @@
             <p> Prijs: €{{$products->prdPrice}} </p>
             <p> <b>Korte omschrijving:</b> <br>{{$products->prdSummary}} </p>
             <p> <b>Uitgebreide omschrijving:</b> <br>{{$products->prdDescription}} </p>
+            <p>
+            <form method="post" action="{{Url::to("addToCart/$products->prdId")}}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input class="" type="submit" value="add to cart" name="{{$products}}">
+            </form>
+            </p>
         </div>
 
-
+s
     </div>
 
 
