@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 
-class CartController extends Controller {
+class CartController extends Controller
+{
 
     public function index()
     {
-        if(Auth::user())
-        {
+        if (Auth::user()) {
             return view('cartIndex');
         }
     }
@@ -21,7 +21,7 @@ class CartController extends Controller {
     {
         //need to check if it works
         $product = array(
-          "$productid" => "$amount"
+            "$productid" => "$amount"
         );
 
         // Put a key / value pair in the session
@@ -42,18 +42,24 @@ class CartController extends Controller {
     public function emptyCart()
     {
         //not checked with
-        if (Auth::user())
-        {
-            // Remove all of the items from the session
-            Session::flush();
-        }
+//        if (Auth::user())
+//        {
+        // Remove all of the items from the session
+        Session::flush();
+//        }
+
+        return redirect()->back();
+    }
+
+    public function showSession()
+    {
+        var_dump(Session::all());
     }
 
     public function removeProduct(Request $request)
     {
         //not checked with
-        if(Auth::user())
-        {
+        if (Auth::user()) {
             $id = $request->input('');
 
             // Remove an item from the session
@@ -64,31 +70,49 @@ class CartController extends Controller {
 
     public function addToCart(Request $request, $id)
     {
-        //var_dump($request->input($id));
+        $items = Session::get('cart', []);
+        echo "$id :  :";
+        if (!empty($items)) {
 
-        Session::put
+            echo 'kom ik hier cart session:  :';
+            foreach ($items as &$item) {
+                if ("$id" == $item['item_id']) {
 
+                    echo 'product wel in cart session:  :';
+//
+                    echo 'product wel in cart session: loop :  :';
+//                    var_dump($item['item_id']);
+//
+                    echo 'product gevonden in cart session: loop :  :';
+//
+                    if ($request->input("$id") == 'add to cart') {
+//
+                        var_dump($item);
+                        echo 'product gevonden add +1 :  :';
+//
+                        $item['item_amount']++;
+                        var_dump($item);
+                        echo 'product amount added correctly:  :';
+                        //var_dump($items);
+                        break;
+                    }
+                }
+            }
+            echo 'product niet in cart session:  :';
 
-        var_dump(Session::all());
+            $items = array('item_id' => "$id",
+                'item_amount' => "1");
+        } else {
+            echo 'kom ik hier lege cart session:  :';
 
-//        var_dump(Session::get(''));
+            $items = array('item_id' => "$id",
+                'item_amount' => "1");
+            echo 'item added to empty cart:  : ';
+        }
 
-//        if(Auth::User())
-//        {
-//            if(! is_null($request->))
-//
-//
-//
-//
-//
-////            $cart = (array) Session::get('cart');
-////            $cart[] = $product;
-////
-////            Session::put('cart', $cart);
-//
-//            //Session::put('cart', "$product");
-//        }
-//        return redirect()->back();
+        Session::push('cart', $items);
+        //       echo 'Session check:  :';
+        return redirect()->back();
     }
 
 }
