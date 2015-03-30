@@ -18,28 +18,25 @@ class CartController extends Controller
         //$amount = [];
         if (Auth::user()) {
 
-           //$SessionItems = Session::get('cart', []);
+           $SessionItems = Session::get('cart', []);
 
-           //foreach($SessionItems as $item)
-           //{
-           //    //echo 'num +: : :';
-           //    //var_dump($item);
-           //    //$int = $item['item_id'];
-           //    //$product = Product::find($item['item_id']);
-
-           //    //$amount = $item['item_amount'];
-           //
-           //
-           //
-           //
-           //}
+           foreach($SessionItems as $item)
+           {
+               //echo 'num +: : :';
+               //var_dump($item);
+               //$int = $item['item_id'];
+               $product[] = Product::find($item['item_id']);
+                //var_dump($product);
+               //$amount = $item['item_amount'];
+               // echo ':: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: ';
+           }
             //hard coded values for view creation
-            ;
-
+            //;
+                //var_dump($product);
 //            for($i = 1; $i <= 2; $i++)
 //            {
-                $product = Product::all();
-                //$categorie =Categorie::find($product['categorie_ctgId']);
+                //$product = Product::all();
+                //$categorie = Categorie::find($product['categorie_ctgId']);
                 $amount = 1;
 //            }
             //var_dump($product);
@@ -49,27 +46,27 @@ class CartController extends Controller
         //return redirect()->back();
     }
 
-    public function addProduct(Product $productid, $amount)
-    {
-        //need to check if it works
-        $product = array(
-            "$productid" => "$amount"
-        );
+    //public function addProduct(Product $productid, $amount)
+    //{
+    //    //need to check if it works
+    //    $product = array(
+    //        "$productid" => "$amount"
+    //    );
+//
+    //    // Put a key / value pair in the session
+    //    //Session::put('key', 'value');
+    //    Session::put('cart', "$product");
+    //}
 
-        // Put a key / value pair in the session
-        //Session::put('key', 'value');
-        Session::put('cart', "$product");
-    }
+   //public function postAddProduct()
+   //{
+   //    //not checked with
+   //    if (Auth::user()) {
+   //        // Put a key / value pair in the session
+   //        Session::put();
 
-    public function postAddProduct()
-    {
-        //not checked with
-        if (Auth::user()) {
-            // Put a key / value pair in the session
-            Session::put();
-
-        }
-    }
+   //    }
+   //}
 
     public function emptyCart()
     {
@@ -80,7 +77,7 @@ class CartController extends Controller
         Session::flush();
 //        }
 
-        return redirect()->back();
+        return redirect('showSession');
     }
 
     public function showSession()
@@ -121,12 +118,15 @@ class CartController extends Controller
 //
                         var_dump($item);
                         echo 'product gevonden add +1 :  :';
-//
+                        Session::forget($id);
                         $item['item_amount']++;
+
                         var_dump($item);
                         echo 'product amount added correctly:  :';
                         //var_dump($items);
-                        break;
+
+                        Session::push('cart', $items);
+                        return redirect()->back();
                     }
                 }
             }
@@ -138,7 +138,7 @@ class CartController extends Controller
             echo 'kom ik hier lege cart session:  :';
 
             $items = array('item_id' => "$id",
-                'item_amount' => "1");
+                'item_amount' => 1);
             echo 'item added to empty cart:  : ';
         }
 

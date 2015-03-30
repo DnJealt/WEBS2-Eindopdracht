@@ -13,7 +13,7 @@
 
                 <div class="panel-body">
                     {{--Table voor de producten--}}
-                    <table class="shopping_cart_content" cellspacing="10" cellpadding="10" border="1">
+                    <table class="shopping_cart_content" cellspacing="10" cellpadding="10" border="0">
 
                         <colgroup>
                             <col class="item_row">
