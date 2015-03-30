@@ -3,6 +3,13 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Product;
+use App\User;
+use Auth;
+use Session;
+
+
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
@@ -32,10 +39,39 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
-	}
+    public function storeProduct() {
+        if(Auth::User()){
+            if(Auth::User()->role_roleId == 1){
+
+                $destinationPath = '';
+                $filename        = '';
+
+                if (Input::hasFile('image')) {
+                    $file            = Input::file('image');
+                    $destinationPath = public_path().'/img/';
+                    $filename        = str_random(6) . '_' . $file->getClientOriginalName();
+                    $uploadSuccess   = $file->move($destinationPath, $filename);
+                }
+
+
+                $product = Product::create(
+                    ['name'       => Input::get('name'),
+                    'price'       => Input::get('price'),
+                    'ingredients' => Input::get('ingredients'),
+                    'active'      => Input::get('active'),
+                    'path'        => $destinationPath . $filename]);
+
+                if ($product) {
+                    return Redirect::route('productSingle', product->id);
+                }
+            }
+        }
+
+
+
+        //TODO - else
+    }
+
 
 	/**
 	 * Display the specified resource.
