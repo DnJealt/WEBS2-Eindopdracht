@@ -21,8 +21,13 @@
                                     <p> {{$items->prdName}}    </p>
                                     <p> Prijs: €{{$items->prdPrice}}    </p>
                                     <p> {{$items->prdSummary}}    </p>
-                                    <br>
-
+                                    <p></p>
+                                    @if(Auth::user())
+                                        <form method="post" action="{{Url::to("addToCart/$items->prdId")}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input class="" type="submit" value="add to cart" name="{{$items->prdId}}">
+                                        </form>
+                                    @endif<br>
                                 </div>
 
                             </div>
@@ -38,8 +43,13 @@
                                     <p> {{$items->prdName}}    </p>
                                     <p> Prijs: €{{$items->prdPrice}}    </p>
                                     <p> {{$items->prdSummary}}    </p>
-                                    <br>
-
+                                    <p></p>
+                                    @if(Auth::user())
+                                        <form method="post" action="{{Url::to("addToCart/$items->prdId")}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input class="" type="submit" value="add to cart" name="{{$items->prdId}}">
+                                        </form>
+                                    @endif<br>
                                 </div>
 
                             </div>
