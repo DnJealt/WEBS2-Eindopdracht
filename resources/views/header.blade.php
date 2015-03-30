@@ -39,7 +39,7 @@
                 @else
                     <li class="logged_in_Name">Logged in as: <b>{{Auth::User()->username}}</b></li>
 
-                    @if(Auth::User()>role_roleId == 1)
+                    @if(Auth::User()->role_roleId == 1)
                         <li class="gotocms"><a href="{{URL::to('CMS')}}">CMS</a></li>
                     @endif
                     <li><a class="logout" href="{{URL::to('logout')}}" role="button">Log out</a> </li>
