@@ -29,9 +29,9 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function createProduct()
 	{
-		//
+		return view('CMS/createProduct');
 	}
 
 	/**
@@ -45,6 +45,8 @@ class AdminController extends Controller {
 
                 $destinationPath = '';
                 $filename        = '';
+
+
 
                 if (Input::hasFile('image')) {
                     $file            = Input::file('image');
