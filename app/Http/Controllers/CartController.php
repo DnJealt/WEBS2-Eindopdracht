@@ -38,7 +38,7 @@ class CartController extends Controller
 
 //            for($i = 1; $i <= 2; $i++)
 //            {
-                $product= Product::find(1);
+                $product = Product::all();
                 //$categorie =Categorie::find($product['categorie_ctgId']);
                 $amount = 1;
 //            }

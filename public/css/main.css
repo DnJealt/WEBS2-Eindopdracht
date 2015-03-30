@@ -151,6 +151,11 @@ section {
     text-align: right;
 }
 
+.shopping_cart_content td{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 /*-------------------------------*/
 /*    Carousel Fade Transition   */
 /*-------------------------------*/
