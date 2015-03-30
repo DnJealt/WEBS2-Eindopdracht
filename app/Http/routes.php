@@ -32,9 +32,9 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 //Route::get('', '');
 
 //CartController Routes
-Route::get('cart', 'CartController@index');                     //view not made, not finished
+Route::get('cart', 'CartController@index');                     //view made, not finished
 
-Route::post('addToCart/{id?}', 'CartController@addToCart');           //post method for adding product to session
+Route::post('addToCart/{id?}', 'CartController@addToCart');     //post method for adding product to session
 
 Route::get('emptyCart', 'CartController@emptyCart');            //clears session data
 Route::get('showSession', 'CartController@showSession');

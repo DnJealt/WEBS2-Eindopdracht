@@ -1,20 +1,52 @@
 <?php namespace App\Http\Controllers;
 
+use App\Categorie;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\Product;
 
 class CartController extends Controller
 {
 
     public function index()
     {
+        //$products = [];
+        //$amount = [];
         if (Auth::user()) {
-            return view('cartIndex');
+
+           //$SessionItems = Session::get('cart', []);
+
+           //foreach($SessionItems as $item)
+           //{
+           //    //echo 'num +: : :';
+           //    //var_dump($item);
+           //    //$int = $item['item_id'];
+           //    //$product = Product::find($item['item_id']);
+
+           //    //$amount = $item['item_amount'];
+           //
+           //
+           //
+           //
+           //}
+            //hard coded values for view creation
+            ;
+
+//            for($i = 1; $i <= 2; $i++)
+//            {
+                $product= Product::find(1);
+                //$categorie =Categorie::find($product['categorie_ctgId']);
+                $amount = 1;
+//            }
+            //var_dump($product);
+            return view('cartIndex', array('products'=>$product, 'amounts'=>$amount));//, 'categories'=>$categorie));
         }
+
+        //return redirect()->back();
     }
 
     public function addProduct(Product $productid, $amount)
