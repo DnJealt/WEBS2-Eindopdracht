@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use App\Product;
 use App\User;
@@ -21,7 +22,7 @@ class AdminController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('admin.adminIndex');
 	}
 
 	/**
@@ -31,7 +32,7 @@ class AdminController extends Controller {
 	 */
 	public function createProduct()
 	{
-		return view('CMS/createProduct');
+		return view('admin.createProduct');
 	}
 
 	/**
@@ -39,7 +40,7 @@ class AdminController extends Controller {
 	 *
 	 * @return Response
 	 */
-    public function storeProduct() {
+    public function storeProduct(Request $request) {
         if(Auth::User()){
             if(Auth::User()->role_roleId == 1){
 
@@ -47,13 +48,12 @@ class AdminController extends Controller {
                 $filename        = '';
 
 
-
-                if (Input::hasFile('image')) {
                     $file            = Input::file('image');
                     $destinationPath = public_path().'/img/';
                     $filename        = str_random(6) . '_' . $file->getClientOriginalName();
+                    echo 'ik heb een image';
                     $uploadSuccess   = $file->move($destinationPath, $filename);
-                }
+
 
 
                 $product = Product::create(
@@ -64,7 +64,7 @@ class AdminController extends Controller {
                     'path'        => $destinationPath . $filename]);
 
                 if ($product) {
-                    return Redirect::route('productSingle', product->id);
+                    return Redirect::route('CMS');
                 }
             }
         }
