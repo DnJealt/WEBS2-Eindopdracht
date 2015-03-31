@@ -33,9 +33,10 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 
 //CartController Routes
 Route::get('cart', 'CartController@index');                     //view made, not finished
-
 Route::post('addToCart/{id?}', 'CartController@addToCart');     //post method for adding product to session
 Route::post('removeFromCart/{id?}', 'CartController@removeFromCart');    //post method for removing product from cart
+Route::get('checkOut', 'CartController@checkout');              //
+
 Route::get('emptyCart', 'CartController@emptyCart');            //clears session data
 Route::get('showSession', 'CartController@showSession');
 

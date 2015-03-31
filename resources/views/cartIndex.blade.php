@@ -137,7 +137,7 @@
                     @if($count > 0)
 
                     <div class="row">
-                        <p><a class="btn btn-danger" href="{{URL::to('#checkOut')}}" role="button">nu
+                        <p><a class="btn btn-danger" href="{{URL::to('checkOut')}}" role="button">nu
                                 Afrekenen &raquo;</a>
                         </p>
                     </div>

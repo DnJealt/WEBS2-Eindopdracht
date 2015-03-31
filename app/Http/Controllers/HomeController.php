@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Product;
+use DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller {
@@ -15,10 +16,19 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-        $topProducts = Product::where('prdPrice', '<', 2)->orderBy('prdname', 'desc')->limit(1)->get();
-        $topProduct = Product::raw("SELECT DISTINCT(COUNT(product_prdId)) AS result, product_prdId FROM cart GROUP BY product_prdId ORDER BY result DESC limit 1");
+        //$topProducts = Product::where('prdPrice', '<', 2)->orderBy('prdname', 'desc')->limit(1)->get();
+        $topProduct = DB::select("CALL TopProduct()");
+        //var_dump($topProduct);
 
-        return view('home', array('productSlide'=>$topProduct));
+        if($topProduct[0]->id > 0)
+        {
+            $product = Product::find($topProduct[0]->id);
+        }
+        else{
+            $product = Product::find(1);
+        }
+
+        return view('home', array('productSlide'=>$product));
 	}
 
     public function about(){

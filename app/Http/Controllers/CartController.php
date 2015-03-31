@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use DB;
 use App\Product;
+use App\Cart;
 
 class CartController extends Controller
 {
@@ -50,28 +52,6 @@ class CartController extends Controller
         }
 //        return redirect()->back();
     }
-
-    //public function addProduct(Product $productid, $amount)
-    //{
-    //    //need to check if it works
-    //    $product = array(
-    //        "$productid" => "$amount"
-    //    );
-//
-    //    // Put a key / value pair in the session
-    //    //Session::put('key', 'value');
-    //    Session::put('cart', "$product");
-    //}
-
-   //public function postAddProduct()
-   //{
-   //    //not checked with
-   //    if (Auth::user()) {
-   //        // Put a key / value pair in the session
-   //        Session::put();
-
-   //    }
-   //}
 
     public function emptyCart() {
         // Remove all of the items from the session
@@ -168,6 +148,52 @@ class CartController extends Controller
         Session::push('cart', $items);
         //       echo 'Session check:  :';
         return redirect()->back();
+    }
+
+    public function checkout()
+    {
+        if(Auth::check()) {
+            $product = array();
+            $amount = array();
+
+            $items = Session::get('cart', []);
+            if (!empty($items)) {
+                $userId = Auth::User()->usrId;
+                foreach ($items as &$item) {
+                    $product = $item['item_id'];
+                    $amount = $item['item_amount'];
+                    //var_dump($amount);
+
+                    $cart = new Cart;
+
+                    $cart->user_usrId = $userId;
+                    $cart->product_prdId = $product;
+                    $cart->crtProductAmount = $amount;
+
+//                    $cart->save();
+                }
+
+                $dbProducts = DB::select("CALL MyCart($userId)");
+
+                //var_dump( $dbProducts);
+
+                foreach($dbProducts as $i) {
+//                    echo $i->id;
+
+                    $dbGet[] = Product::find($i->id);
+                }
+                //var_dump($dbGet);
+
+//                foreach($dbGet as $db)
+//                {
+//                    echo $db->prdName;
+//                }
+                   // echo($amount);
+
+                return view('checkout', array('products'=>$dbGet, 'amounts'=>$amount));
+            }
+        }
+        //return redirect('/');
     }
 
 }
