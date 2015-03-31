@@ -67,12 +67,12 @@
                                 </td>
                                 <td>
                                     {{--product amount--}}
-                                    {{$amounts[$count]}}x
+                                    {{$amounts}}x
                                 </td>
                                 <td class="total_row">
                                 <span class="pricewrap">
                                     {{--calculated total price--}}
-                                    €{{$items->prdPrice * $amounts[$count]}}
+                                    €{{$items->prdPrice * $amounts}}
                                 </span>
                                 </td>
                             <?php $count++ ?>

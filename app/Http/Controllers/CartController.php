@@ -162,15 +162,15 @@ class CartController extends Controller
                 foreach ($items as &$item) {
                     $product = $item['item_id'];
                     $amount = $item['item_amount'];
-                    //var_dump($amount);
+//                   var_dump($amount);
 
                     $cart = new Cart;
 
                     $cart->user_usrId = $userId;
                     $cart->product_prdId = $product;
                     $cart->crtProductAmount = $amount;
-
-//                    $cart->save();
+//                    var_dump($amount);
+//                    $cart->save(); //moet uncomment worden om de producten in de db cart te saven
                 }
 
                 $dbProducts = DB::select("CALL MyCart($userId)");
@@ -181,15 +181,8 @@ class CartController extends Controller
 //                    echo $i->id;
 
                     $dbGet[] = Product::find($i->id);
+
                 }
-                //var_dump($dbGet);
-
-//                foreach($dbGet as $db)
-//                {
-//                    echo $db->prdName;
-//                }
-                   // echo($amount);
-
                 return view('checkout', array('products'=>$dbGet, 'amounts'=>$amount));
             }
         }
