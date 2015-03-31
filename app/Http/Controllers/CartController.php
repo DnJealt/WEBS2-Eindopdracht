@@ -29,6 +29,7 @@ class CartController extends Controller
                 //var_dump($product);
                //$amount = $item['item_amount'];
                // echo ':: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: ';
+               $amount = $item['item_amount'];
            }
             //hard coded values for view creation
             //;
@@ -37,7 +38,6 @@ class CartController extends Controller
 //            {
                 //$product = Product::all();
                 //$categorie = Categorie::find($product['categorie_ctgId']);
-                $amount = 1;
 //            }
             //var_dump($product);
             return view('cartIndex', array('products'=>$product, 'amounts'=>$amount));//, 'categories'=>$categorie));
@@ -118,14 +118,14 @@ class CartController extends Controller
 //
                         var_dump($item);
                         echo 'product gevonden add +1 :  :';
-                        Session::forget($id);
+//                        Session::forget($id);
                         $item['item_amount']++;
 
                         var_dump($item);
                         echo 'product amount added correctly:  :';
                         //var_dump($items);
 
-                        Session::push('cart', $items);
+                        Session::put('cart', $items);
                         return redirect()->back();
                     }
                 }
