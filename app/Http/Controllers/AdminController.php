@@ -8,10 +8,9 @@ use App\Product;
 use App\User;
 use Auth;
 use Session;
+use Illuminate\Support\Facades\Redirect;
 
 
-
-use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
@@ -44,27 +43,43 @@ class AdminController extends Controller {
         if(Auth::User()){
             if(Auth::User()->role_roleId == 1){
 
-                $destinationPath = '';
-                $filename        = '';
+                $destinationPathSmall = '';
+                $filenameSmall       = '';
+                $destinationPathBig = '';
+                $filenameBig      = '';
+
+                    if($request->hasFile('smallFileToUpload')){
+
+                        $file            = $request->file('smallFileToUpload');
+                        $destinationPathSmall = public_path().'/img/productimg/';
+                        $filenameSmall        = str_random(6) . '_' . $file->getClientOriginalName();
+                        $uploadSuccess   = $file->move($destinationPathSmall, $filenameSmall);
+                    }
+
+                    if($request->hasFile('bigFileToUpload')){
+
+                        $file            = $request->file('bigFileToUpload');
+                        $destinationPathBig = public_path().'/img/productimg/';
+                        $filenameBig        = str_random(6) . '_' . $file->getClientOriginalName();
+                        $uploadSuccess   = $file->move($destinationPathBig, $filenameBig);
+                    }
 
 
-                    $file            = Input::file('image');
-                    $destinationPath = public_path().'/img/';
-                    $filename        = str_random(6) . '_' . $file->getClientOriginalName();
-                    echo 'ik heb een image';
-                    $uploadSuccess   = $file->move($destinationPath, $filename);
+
+                $product = new Product();
+                $product->prdName = $request->input('prdName');
+                $product->prdPrice = $request->input('prdPrice');
+                $product->prdSummary = $request->input('prdSummary');
+                $product->prdDescription = $request->input('prdDescription');
+                $product->prdPicSmall = $filenameSmall;
+                $product->prdPicBig = $filenameBig;
+
+                $product->save();
 
 
-
-                $product = Product::create(
-                    ['name'       => Input::get('name'),
-                    'price'       => Input::get('price'),
-                    'ingredients' => Input::get('ingredients'),
-                    'active'      => Input::get('active'),
-                    'path'        => $destinationPath . $filename]);
 
                 if ($product) {
-                    return Redirect::route('CMS');
+                    return Redirect::route('product');
                 }
             }
         }

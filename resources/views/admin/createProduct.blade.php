@@ -4,13 +4,57 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
-            <form action="{{URL::to('CMS/store')}}" method="post" enctype="multipart/form-data">
+        <div class="col-md-8">
+            <div class="createProduct">
+                <h1>Product aanmaken</h1>
+                <form method="post" id="createProduct" action="{{URL::to('CMS/storeProduct')}}" enctype="multipart/form-data">
+                    <table>
+                        <tr>
+                            <th>
+                                <p><input type="text" name="prdName" value="" placeholder="Productnaam" required></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
 
-                <input type="file" name="fileToUpload">
-                <input type="submit" value="Upload Image" name="submit">
-            </form>
-        </div>
+                                <p><input type="number" step="0.01" name="prdPrice" value="" placeholder="Prijs" required></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p><textarea form="createProduct" name="prdSummary" maxlength="200" rows="2" cols="50" placeholder="Samenvatting" required></textarea></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p><textarea form="createProduct" name="prdDescription" maxlength="500" rows="5" cols="50" placeholder="Beschrijving" required></textarea></p>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                <p>Klein productplaatje<input type="file" name="smallFileToUpload" required></p>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                <p>Groot productplaatje<input type="file" name="bigFileToUpload" required></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                <p class="submit"><input type="submit" name="submit" value="Maak aan"></p>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
     </div>
 </div>
 
