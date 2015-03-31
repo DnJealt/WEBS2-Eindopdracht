@@ -108,8 +108,8 @@
                             @foreach($products as $price)
                                 <tr>
 
-                                    <td><p>{{$price->prdPrice}}</p></td>
-                                    <?php $piet = $piet + $price->prdPrice ?>
+                                    <td><p>{{$price->prdPrice * $amounts}}</p></td>
+                                    <?php $piet = $piet + ($price->prdPrice*$amounts) ?>
                                 </tr>
                             @endforeach
                 </div>

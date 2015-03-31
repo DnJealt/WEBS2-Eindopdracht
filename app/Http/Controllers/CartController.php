@@ -31,19 +31,10 @@ class CartController extends Controller
                // echo ':: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: ';
                $amount = $item['item_amount'];
            }
-            //hard coded values for view creation
-            //;
-                //var_dump($product);
-//            for($i = 1; $i <= 2; $i++)
-//            {
-                //$product = Product::all();
-                //$categorie = Categorie::find($product['categorie_ctgId']);
-//            }
-            //var_dump($product);
+
             return view('cartIndex', array('products'=>$product, 'amounts'=>$amount));//, 'categories'=>$categorie));
         }
-
-        //return redirect()->back();
+        return redirect()->back();
     }
 
     //public function addProduct(Product $productid, $amount)
