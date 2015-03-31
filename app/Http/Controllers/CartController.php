@@ -14,16 +14,18 @@ class CartController extends Controller
 
     public function index()
     {
-//        $product = array();
+        $product = array();
         $amount = array();
         if (Auth::user()) {
 
            $SessionItems = Session::get('cart', []);
 
+           $count = 0;
            foreach($SessionItems as $item)
            {
                if($item['item_amount'] > 0)
                {
+                   $count++;
                    //echo 'num +: : :';
                    //var_dump($item);
                    //$int = $item['item_id'];
@@ -35,6 +37,10 @@ class CartController extends Controller
                    //var_dump($item['item_amount']);
                }
            }
+            if($count == 0)
+            {
+                Session::forget('cart');
+            }
 
             //$items = array('product' => $product,
             //    'product_amounts' => $amount);
@@ -67,20 +73,13 @@ class CartController extends Controller
    //    }
    //}
 
-    public function emptyCart()
-    {
-        //not checked with
-//        if (Auth::user())
-//        {
+    public function emptyCart() {
         // Remove all of the items from the session
         Session::flush();
-//        }
-
         return redirect('showSession');
     }
 
-    public function showSession()
-    {
+    public function showSession() {
         var_dump(Session::all());
     }
 

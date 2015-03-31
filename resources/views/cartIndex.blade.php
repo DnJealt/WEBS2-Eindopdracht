@@ -37,59 +37,63 @@
                         </thead>
                         <tbody>
                         <?php $count = 0 ?>
-                        @foreach($products as $items)
-                            <tr>
-                                <td class="item_row">
-                                    <div>
-                                        <a class="" title="{{$items->prdName}}"
-                                           href="productDetail/{{$items->prdId}}">
-                                            <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="75"
-                                                 height="100">
-                                        </a>
-                                    </div>
-                                    <div class="product_details">
+                        @if(!empty(Session::get('cart', [])))
+                            @foreach($products as $items)
+                                <tr>
+                                    <td class="item_row">
                                         <div>
-                                            <a class="product_name" href="productDetail/{{$items->prdId}}"
-                                               title="{{$items->prdName}}">
-                                                {{$items->prdName}}</a>
+                                            <a class="" title="{{$items->prdName}}"
+                                               href="productDetail/{{$items->prdId}}">
+                                                <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}"
+                                                     width="75"
+                                                     height="100">
+                                            </a>
                                         </div>
-                                        <div>{{--Product gegeven zoals title--}}</div>
+                                        <div class="product_details">
+                                            <div>
+                                                <a class="product_name" href="productDetail/{{$items->prdId}}"
+                                                   title="{{$items->prdName}}">
+                                                    {{$items->prdName}}</a>
+                                            </div>
+                                            <div>{{--Product gegeven zoals title--}}</div>
 
-                                        <div>{{--categorie--}}
-                                            {{--{{$categories->ctgName}}--}}
+                                            <div>{{--categorie--}}
+                                                {{--{{$categories->ctgName}}--}}
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>{{--..Werkdagen--}}
-                                    <p>Levering 2-3 dagen</p>
-                                </td>
-                                <td>
+                                    </td>
+                                    <td>{{--..Werkdagen--}}
+                                        <p>Levering 2-3 dagen</p>
+                                    </td>
+                                    <td>
                                 <span class="pricewrap">
                                     {{--#productPrice--}}
                                     {{$items->prdPrice}}
                                     <br>
                                 </span>
-                                </td>
-                                <td>
-                                    {{--product amount--}}
-                                    {{$amounts[$count]}}x
-                                </td>
-                                <td class="total_row">
+                                    </td>
+                                    <td>
+                                        {{--product amount--}}
+                                        {{$amounts[$count]}}x
+                                    </td>
+                                    <td class="total_row">
                                 <span class="pricewrap">
                                     {{--calculated total price--}}
                                     €{{$items->prdPrice * $amounts[$count]}}
                                 </span>
-                                </td>
-                                <td>
-                                    {{--remove item--}}
-                                    <form method="post" action="{{Url::to("removeFromCart/$items->prdId")}}">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input class="" type="submit" value="remove from cart" name="{{$items->prdId}}">
-                                    </form>
-                                </td>
-                            </tr>
-                            <?php $count++ ?>
-                        @endforeach
+                                    </td>
+                                    <td>
+                                        {{--remove item--}}
+                                        <form method="post" action="{{Url::to("removeFromCart/$items->prdId")}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input class="" type="submit" value="remove from cart"
+                                                   name="{{$items->prdId}}">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php $count++ ?>
+                            @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -108,30 +112,36 @@
                             <?php $piet = 0;?>
                             {{--Hier komen kort de namen en prijzen te staan--}}
                             <?php $count = 0 ?>
-                            @foreach($products as $price)
-                                <tr>
+                            @if(!empty(Session::get('cart', [])))
+                                @foreach($products as $price)
+                                    <tr>
 
-                                    <td><p>{{$price->prdPrice * $amounts[$count]}}</p></td>
-                                    <?php $piet = $piet + ($price->prdPrice * $amounts[$count]) ?>
-                                </tr>
-                                <?php $count++ ?>
-                            @endforeach
+                                        <td><p>{{$price->prdPrice * $amounts[$count]}}</p></td>
+                                        <?php $piet = $piet + ($price->prdPrice * $amounts[$count]) ?>
+                                    </tr>
+                                    <?php $count++ ?>
+                                @endforeach
+                            @endif
                         </div>
 
                         <div class="row">
-
+                            @if($count > 0)
                             <tr>
                                 <td>Eindbedrag</td>
                                 <td>{{$piet}}</td>
                             </tr>
+                            @endif
                             {{--Hier komt het eindbedrag te staan--}}
                         </div>
                     </table>
+                    @if($count > 0)
+
                     <div class="row">
                         <p><a class="btn btn-danger" href="{{URL::to('#checkOut')}}" role="button">nu
                                 Afrekenen &raquo;</a>
                         </p>
                     </div>
+                        @endif
                 </div>
             </div>
         </div>
