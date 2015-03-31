@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\User;
+use App\Categorie;
+
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -30,8 +32,10 @@ class AdminController extends Controller {
 	 * @return Response
 	 */
 	public function createProduct()
-	{
-		return view('admin.createProduct');
+    {
+        $categories = Categorie::all();
+
+		return view('admin.createProduct', array('categories'=>$categories));
 	}
 
 	/**
@@ -73,13 +77,16 @@ class AdminController extends Controller {
                 $product->prdDescription = $request->input('prdDescription');
                 $product->prdPicSmall = $filenameSmall;
                 $product->prdPicBig = $filenameBig;
+                $product->categorie_ctgId = $request->input('categorie');
+
 
                 $product->save();
 
 
 
+
                 if ($product) {
-                    return Redirect::route('product');
+                    return Redirect::to('product');
                 }
             }
         }
