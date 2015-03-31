@@ -16,7 +16,7 @@
             <p> <b>Uitgebreide omschrijving:</b> <br>{{$products->prdDescription}} </p>
             <p></p>
                 @if(Auth::user())
-                <form method="post" action="{{Url::to("c")}}">
+                <form method="post" action="{{Url::to("addToCart/$products->prdId")}}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input class="" type="submit" value="add to cart" name="{{$products->prdId}}">
                 </form>
