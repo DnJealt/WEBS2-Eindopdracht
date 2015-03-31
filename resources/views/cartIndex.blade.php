@@ -56,7 +56,7 @@
                                         <div>{{--Product gegeven zoals title--}}</div>
 
                                         <div>{{--categorie--}}
-                                            {{--                                            {{$categories->ctgName}}--}}
+                                            {{--{{$categories->ctgName}}--}}
                                         </div>
                                     </div>
                                 </td>
@@ -83,7 +83,7 @@
                                 <td>
                                     {{--remove item--}}
                                     <form method="post" action="{{Url::to("removeFromCart/$items->prdId")}}">
-                                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input class="" type="submit" value="remove from cart" name="{{$items->prdId}}">
                                     </form>
                                 </td>
@@ -114,28 +114,28 @@
                                     <td><p>{{$price->prdPrice * $amounts[$count]}}</p></td>
                                     <?php $piet = $piet + ($price->prdPrice * $amounts[$count]) ?>
                                 </tr>
-                                    <?php $count++ ?>
-                                @endforeach
-                </div>
+                                <?php $count++ ?>
+                            @endforeach
+                        </div>
 
-                <div class="row">
+                        <div class="row">
 
-                    <tr>
-                        <td>Eindbedrag</td>
-                        <td>{{$piet}}</td>
-                    </tr>
-                    {{--Hier komt het eindbedrag te staan--}}
-                </div>
-                </table>
-                <div class="row">
-                    <p><a class="btn btn-danger" href="{{URL::to('#checkOut')}}" role="button">nu
-                            Afrekenen &raquo;</a>
-                    </p>
+                            <tr>
+                                <td>Eindbedrag</td>
+                                <td>{{$piet}}</td>
+                            </tr>
+                            {{--Hier komt het eindbedrag te staan--}}
+                        </div>
+                    </table>
+                    <div class="row">
+                        <p><a class="btn btn-danger" href="{{URL::to('#checkOut')}}" role="button">nu
+                                Afrekenen &raquo;</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </div>
 @include('footer')
