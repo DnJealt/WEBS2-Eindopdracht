@@ -90,10 +90,25 @@ class AdminController extends Controller {
                 }
             }
         }
+    }
+
+    public function updateProduct(){
+        $products = Product::all();
+        return view('admin.updateIndex', array('products'=>$products));
+    }
+
+    public function getUpdateProduct($id){
+        $product = Product::find($id);
+        $categories = Categorie::all();
+
+        return view('admin.updateProduct', array('product'=>$product, 'categories'=>$categories));
+    }
+
+    public function postUpdateProduct(Request $request, $id){
+
+        echo $id;
 
 
-
-        //TODO - else
     }
 
 

@@ -12,7 +12,7 @@
                 <div class="row">
                     @if($items->prdId % 2 == 0)
 
-                        <a href="productDetail/{{$items->prdId}}">
+                        <a href="{{URL::to("/CMS/updateProduct/$items->prdId")}}">
                             <div class="evending">
                                 <div class="col-md-2">
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="100" height="150">
@@ -23,9 +23,9 @@
                                     <p> {{$items->prdSummary}}    </p>
                                     <p></p>
                                     @if(Auth::user())
-                                        <form method="post" action="{{Url::to("addToCart/$items->prdId")}}">
+                                        <form method="post" action="{{Url::to("/CMS/deleteProduct/$items->prdId")}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input class="" type="submit" value="add to cart" name="{{$items->prdId}}">
+                                            <input class="" type="submit" value="Delete" name="{{$items->prdId}}">
                                         </form>
                                     @endif<br>
                                 </div>
@@ -34,7 +34,7 @@
                         </a>
                     @else
 
-                        <a href="productDetail/{{$items->prdId}}">
+                        <a href="{{URL::to("/CMS/updateProduct/$items->prdId")}}">
                             <div class="onevending">
                                 <div class="col-md-2">
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="100" height="150">
@@ -45,9 +45,9 @@
                                     <p> {{$items->prdSummary}}    </p>
                                     <p></p>
                                     @if(Auth::user())
-                                        <form method="post" action="{{Url::to("addToCart/$items->prdId")}}">
+                                        <form method="post" action="{{Url::to("/CMS/deleteProduct/$items->prdId")}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input class="" type="submit" value="add to cart" name="{{$items->prdId}}">
+                                            <input class="" type="submit" value="Delete" name="{{$items->prdId}}">
                                         </form>
                                     @endif<br>
                                 </div>
