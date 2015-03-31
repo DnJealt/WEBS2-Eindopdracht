@@ -50,5 +50,8 @@ Route::post('register', 'UserController@postRegister');         //not finished, 
 Route::get('CMS', 'AdminController@index');                     //view not made, not finished
 Route::get('CMS/createProduct', 'AdminController@createProduct');
 Route::post('CMS/storeProduct', 'AdminController@storeProduct');
+Route::get('CMS/updateProduct', 'AdminController@updateProduct');
+Route::get('CMS/updateProduct/{id?}', 'AdminController@getUpdateProduct');
+Route::post('CMS/updateProduct/{id?}', 'AdminController@postUpdateProduct');
 //Route::get('', '');
 

@@ -2,10 +2,10 @@
 <body>
 @include('header')
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
-            <div class="createProduct">
+        <div class="col-md-offset-2 col-md-8">
+            <div>
                 <h1>Product aanmaken</h1>
                 <form method="post" id="createProduct" action="{{URL::to('CMS/storeProduct')}}" enctype="multipart/form-data">
                     <table>
