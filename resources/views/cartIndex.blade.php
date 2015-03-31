@@ -36,14 +36,15 @@
                         </div>
                         </thead>
                         <tbody>
+                        <?php $count = 0 ?>
                         @foreach($products as $items)
                             <tr>
                                 <td class="item_row">
                                     <div>
                                         <a class="" title="{{$items->prdName}}"
                                            href="productDetail/{{$items->prdId}}">
-                                            <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width=""
-                                                 height="">
+                                            <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="75"
+                                                 height="100">
                                         </a>
                                     </div>
                                     <div class="product_details">
@@ -71,12 +72,12 @@
                                 </td>
                                 <td>
                                     {{--product amount--}}
-                                    {{$amounts}}x
+                                    {{$amounts[$count]}}x
                                 </td>
                                 <td class="total_row">
                                 <span class="pricewrap">
                                     {{--calculated total price--}}
-                                    €{{$items->prdPrice * $amounts}}
+                                    €{{$items->prdPrice * $amounts[$count]}}
                                 </span>
                                 </td>
                                 <td>
@@ -87,6 +88,7 @@
                                     </form>
                                 </td>
                             </tr>
+                            <?php $count++ ?>
                         @endforeach
                         </tbody>
                     </table>
@@ -105,13 +107,15 @@
                         <div class="row">
                             <?php $piet = 0;?>
                             {{--Hier komen kort de namen en prijzen te staan--}}
+                            <?php $count = 0 ?>
                             @foreach($products as $price)
                                 <tr>
 
-                                    <td><p>{{$price->prdPrice * $amounts}}</p></td>
-                                    <?php $piet = $piet + ($price->prdPrice*$amounts) ?>
+                                    <td><p>{{$price->prdPrice * $amounts[$count]}}</p></td>
+                                    <?php $piet = $piet + ($price->prdPrice * $amounts[$count]) ?>
                                 </tr>
-                            @endforeach
+                                    <?php $count++ ?>
+                                @endforeach
                 </div>
 
                 <div class="row">
