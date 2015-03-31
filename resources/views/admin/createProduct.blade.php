@@ -30,7 +30,22 @@
                                 <p><textarea form="createProduct" name="prdDescription" maxlength="500" rows="5" cols="50" placeholder="Beschrijving" required></textarea></p>
                             </th>
                         </tr>
+                        <tr>
+                            <th>
+                                <p>
+                                    Categorie:
+                                    <select name="categorie" form="createProduct" required>
+                                        @foreach($categories as $items)
+                                            <option value="{{$items->ctgId}}">
+                                                {{$items->ctgName}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </p>
 
+                            </th>
+                        </tr>
+                        <br>
                         <tr>
                             <th>
                                 <p>Klein productplaatje<input type="file" name="smallFileToUpload" required></p>

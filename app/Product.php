@@ -6,5 +6,6 @@ class Product extends Model {
 
 	//
     protected $primaryKey = 'prdId';
+    public $timestamps = false;
 
 }
