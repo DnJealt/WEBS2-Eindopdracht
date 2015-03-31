@@ -20,46 +20,45 @@ class CartController extends Controller
         $amount = array();
         if (Auth::user()) {
 
-           $SessionItems = Session::get('cart', []);
+            $SessionItems = Session::get('cart', []);
 
-           $count = 0;
-           foreach($SessionItems as $item)
-           {
-               if($item['item_amount'] > 0)
-               {
-                   $count++;
-                   //echo 'num +: : :';
-                   //var_dump($item);
-                   //$int = $item['item_id'];
-                   $product[] = Product::find($item['item_id']);
-                   // var_dump($product);
-                   //$amount = $item['item_amount'];
-                   // echo ':: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: ';
-                   array_push($amount, $item['item_amount']);
-                   //var_dump($item['item_amount']);
-               }
-           }
-            if($count == 0)
-            {
+            $count = 0;
+            foreach ($SessionItems as $item) {
+                if ($item['item_amount'] > 0) {
+                    $count++;
+                    //echo 'num +: : :';
+                    //var_dump($item);
+                    //$int = $item['item_id'];
+                    $product[] = Product::find($item['item_id']);
+                    // var_dump($product);
+                    //$amount = $item['item_amount'];
+                    // echo ':: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: :: ';
+                    array_push($amount, $item['item_amount']);
+                    //var_dump($item['item_amount']);
+                }
+            }
+            if ($count == 0) {
                 Session::forget('cart');
             }
 
             //$items = array('product' => $product,
             //    'product_amounts' => $amount);
 
-           //var_dump($amount);
-           return view('cartIndex', array('products'=>$product, 'amounts'=>$amount));
+            //var_dump($amount);
+            return view('cartIndex', array('products' => $product, 'amounts' => $amount));
         }
 //        return redirect()->back();
     }
 
-    public function emptyCart() {
+    public function emptyCart()
+    {
         // Remove all of the items from the session
         Session::flush();
         return redirect('showSession');
     }
 
-    public function showSession() {
+    public function showSession()
+    {
         var_dump(Session::all());
     }
 
@@ -74,7 +73,7 @@ class CartController extends Controller
             foreach ($items as &$item) {
                 if ("$id" == $item['item_id']) {
 
-                   // echo 'product wel in cart session:  :';
+                    // echo 'product wel in cart session:  :';
 //
                     //echo 'product wel in cart session: loop :  :';
 //                    var_dump($item['item_id']);
@@ -106,7 +105,7 @@ class CartController extends Controller
         //echo "$id :  :";
         if (!empty($items)) {
 
-           // echo 'kom ik hier cart session:  :';
+            // echo 'kom ik hier cart session:  :';
             foreach ($items as &$item) {
                 if ("$id" == $item['item_id']) {
 
@@ -152,7 +151,7 @@ class CartController extends Controller
 
     public function checkout()
     {
-        if(Auth::check()) {
+        if (Auth::check()) {
             $product = array();
             $amount = array();
 
@@ -162,31 +161,23 @@ class CartController extends Controller
                 foreach ($items as &$item) {
                     $product = $item['item_id'];
                     $amount = $item['item_amount'];
-//                   var_dump($amount);
 
                     $cart = new Cart;
-
                     $cart->user_usrId = $userId;
                     $cart->product_prdId = $product;
                     $cart->crtProductAmount = $amount;
-//                    var_dump($amount);
 //                    $cart->save(); //moet uncomment worden om de producten in de db cart te saven
                 }
 
                 $dbProducts = DB::select("CALL MyCart($userId)");
 
-                //var_dump( $dbProducts);
-
-                foreach($dbProducts as $i) {
-//                    echo $i->id;
-
+                foreach ($dbProducts as $i) {
                     $dbGet[] = Product::find($i->id);
-
                 }
-                return view('checkout', array('products'=>$dbGet, 'amounts'=>$amount));
+                return view('checkout', array('products' => $dbGet, 'amounts' => $amount));
             }
         }
-        //return redirect('/');
+        return redirect('/');
     }
 
 }

@@ -5,7 +5,7 @@
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="panel panel-danger">
                 <div class="panel-heading panelCustom">
                     <h2>Check Out</h2>
@@ -29,6 +29,7 @@
                                 <th>Prijs</th>
                                 <th>Aantal</th>
                                 <th class="aright">Totaal</th>
+                                <th></th>
                             </tr>
                         </div>
                         </thead>
@@ -75,8 +76,26 @@
                                     €{{$items->prdPrice * $amounts}}
                                 </span>
                                 </td>
-                            <?php $count++ ?>
+                            </tr>
                         @endforeach
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Totalprice:</td>
+                            <td>
+                        <?php $totalprice = 0; ?>
+                            @foreach($products as $items)
+                                <?php $totalprice = $totalprice + ($items->prdPrice * $amounts)?>
+                            @endforeach
+                            </td>
+                            <td>
+                                <form method="post" action="{{Url::to("Betaald")}}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input class="" type="submit" value="Naar betalen"
+                                           name="Naar_betalen">
+                                </form>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
