@@ -15,8 +15,11 @@ class UserController extends Controller {
 
     public function getLogin()
     {
-        //show form
-        return View('login');
+        if(!Auth::user()) {
+            //show form
+            return View('login');
+        }
+        return redirect('/');
     }
 
     public function postLogin(Request $request)
@@ -38,11 +41,11 @@ class UserController extends Controller {
             }
             else {
             //echo'niet bestaande gebruiker';
-            return redirect()->back();
+                return redirect('/');
             }
         }
         else{
-            return redirect()->back();
+            return redirect('/');
         }
     }
 
@@ -51,7 +54,7 @@ class UserController extends Controller {
         if (Auth::user()) {
             Auth::logout();
         }
-        return redirect()->back();
+        return redirect('/');
     }
 
     public function getRegister()
