@@ -25,7 +25,7 @@ Route::get('product', 'ProductController@index');               //view made, not
 Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not finished
 
 //CategorieController Routes
-//Route::get('', '');
+Route::get('menu', 'CategorieController@index');
 //Route::post('', '');
 //Route::get('', '');
 //Route::post('', '');

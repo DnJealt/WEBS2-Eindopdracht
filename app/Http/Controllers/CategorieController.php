@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use DB;
 
 class CategorieController extends Controller {
 
@@ -14,7 +15,28 @@ class CategorieController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $parent = 0;
+
+        $levels= DB::raw("CALL CatogMenu('$parent')");
+
+        foreach($levels as $niveau)
+        {
+            $print = $niveau['ctgName'];
+
+            echo($print);
+
+        }
+
+       //if($level['Count'] > 0)
+       //{
+
+       //}
+       //elseif($level['Count'] == 0)
+       //{
+
+       //}
+
+
 	}
 
 	/**
