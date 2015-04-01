@@ -106,7 +106,13 @@ class AdminController extends Controller {
 
     public function postUpdateProduct(Request $request, $id){
 
-        echo $id;
+        $product = Product::find($id);
+
+        $product->prdName = $request->input('prdName');
+        $product->prdPrice = $request->input('prdPrice');
+        $product->prdSummary = $request->input('prdSummary');
+        $product->prdDescription = $request->input('prdDescription');
+        $product->categorie_ctgId = $request->input('categorie');
 
 
     }
