@@ -33,7 +33,6 @@
                             </div>
                         </a>
                     @else
-
                         <a href="productDetail/{{$items->prdId}}">
                             <div class="onevending">
                                 <div class="col-md-2">
@@ -54,15 +53,9 @@
 
                             </div>
                         </a>
-
-
                     @endif
                 </div>
-
-
-
                 <p></p>
-
             @endforeach
 
         </div>

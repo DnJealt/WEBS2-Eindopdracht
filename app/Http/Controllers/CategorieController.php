@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Product;
 
 class CategorieController extends Controller
 {
@@ -27,47 +28,6 @@ class CategorieController extends Controller
                 array_push($menu, $sc);
             }
         }
-///////      $stack = [];
-////      $stckCount = -1;
-////
-////      $cats = array();
-////
-////      foreach ($menu as $m)
-////          if (($m->ctgSubOf == 0)) {
-////              if (!empty($stack)) {
-////                  for ($i = 0; $i < $stckCount; $i++) {
-////                      array_push($cats, '</ul>');
-////                  }
-////                  unset($stack);
-////                  $stack = [];
-////              }
-////              array_push($cats, '<li><a href="{{URL::to(categorie/' . $m->ctgId . ')}}">' . $m->ctgName . '</a></li>');
-////              '                   <li><a href="{{URL::to("categorie/$m->ctgId")}}">{{$m->ctgName}}</a></li>'
-///////              array_push($stack, $m->ctgId);
-////              $stckCount = 0;
-////          } else {
-////              if ($m->ctgSubOf == $stack[$stckCount]) {
-////                  array_push($cats, '<ul><li><a href="{{URL::to(categorie/' . $m->ctgId . ')}}">' . $m->ctgName . '</a></li>');
-////                  array_push($stack, $m->ctgId);
-////                  $stckCount++;
-////              } else {
-////                  array_push($cats, '<li><a href="{{URL::to(categorie/' . $m->ctgId . ')}}">' . $m->ctgName . '</a></li>');
-////                  array_pop($stack);
-////                  array_push($stack, $m->ctgId);
-////              }
-////          }
-////      if ($stckCount != 0) {
-////          for ($i = 0; $i < $stckCount; $i++) {
-////              array_push($cats, '</ul>');
-////          }
-////      }
-////
-////        foreach($cats as $c)
-////        {
-////            echo "$c";
-////            echo '<br>';
-////        }
-//
 
         return $menu;
     }
@@ -77,9 +37,36 @@ class CategorieController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function categorieIndex($id)
     {
-        //
+        $categorie = Categorie::find($id);
+
+        $allProducts = DB::select("CALL ProductOnCategorie($id)");
+
+        if ($categorie->ctgSubOf == 0) {
+
+            $allCatsOf = DB::select("CALL SubCategorie($id)");
+
+
+            foreach ($allCatsOf as $cat) {
+                unset($otherProducts);
+
+
+                $otherProducts = DB::select("CALL ProductOnCategorie($cat->ctgId)");
+
+                if (!empty($otherProducts)) {
+                    foreach ($otherProducts as $op) {
+                        array_push($allProducts, $op);
+                    }
+                }
+            }
+        }
+
+        if (!empty($allProducts)) {
+            return view('productAll', array('products' => $allProducts));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
