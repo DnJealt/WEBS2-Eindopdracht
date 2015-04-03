@@ -12,7 +12,7 @@
                 <div class="row">
                     @if($items->prdId % 2 == 0)
 
-                        <a href="productDetail/{{$items->prdId}}">
+                        <a href="{{Url::to("productDetail/$items->prdId")}}">
                             <div class="evending">
                                 <div class="col-md-2">
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="75" height="100">
@@ -33,7 +33,7 @@
                             </div>
                         </a>
                     @else
-                        <a href="productDetail/{{$items->prdId}}">
+                        <a href="{{Url::to("productDetail/$items->prdId")}}">
                             <div class="onevending">
                                 <div class="col-md-2">
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="75" height="100">
