@@ -7,10 +7,10 @@
     <div class="row">
 
         <div class="col-md-offset-1">
-
+            <?php $count = 1; ?>
             @foreach($products as $items)
                 <div class="row">
-                    @if($items->prdId % 2 == 0)
+                    @if($count % 2 == 0)
 
                         <a href="{{Url::to("productDetail/$items->prdId")}}">
                             <div class="evending">
@@ -56,6 +56,7 @@
                     @endif
                 </div>
                 <p></p>
+                    <?php $count++; ?>
             @endforeach
 
         </div>
