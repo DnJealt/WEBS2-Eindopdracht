@@ -26,35 +26,19 @@
 
                 <li class="dropdown">
                     <?php use App\Http\Controllers\CategorieController;  $menu = CategorieController::index(); ?>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TBD
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorieen
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <?php $count = 1 ?>
-                        <?php $subcount = 1 ?>
-                            <?php count($menu) ?>
-                            <?php  $head = 0 ?>
                         @foreach($menu as $m)
                             @if(($m->ctgSubOf == 0))
                                 <li><a href="{{URL::to("categorie/$m->ctgId")}}">{{$m->ctgName}}</a></li>
-                                <?php $count++; $head = $m->ctgId ?>
-                            @elseif($m->ctgSubOf == $head)
-                                <ul>
-                                    <li><a href="{{URL::to("categorie/$m->ctgId")}}">{{$m->ctgName}}</a></li>
-                                    @if($m->ctgSubOf == $menu[$m+1]->ctgSubOf)
-                                    </ul>
-                                    @endif
+                            @else
+                                <ul><li><a href="{{URL::to("categorie/$m->ctgId")}}">{{$m->ctgName}}</a></li></ul>
                             @endif
-
-                            {{--@if($m->childof == $m->parentId)--}}
-                                {{--<ul>--}}
-
-                                {{--</ul>--}}
-                            {{--@endif--}}
-
                         @endforeach
+
                     </ul>
                 </li>
-
                 <li><a href="{{URL::to('about')}}">About</a></li>
             </ul>
 

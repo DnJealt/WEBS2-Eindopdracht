@@ -25,20 +25,50 @@ class CategorieController extends Controller
             $subCat = DB::Select("CALL CatogMenu($mc->ctgId)");
             foreach ($subCat as $sc) {
                 array_push($menu, $sc);
-                $subsubCat = DB::Select("CALL CatogMenu($sc->ctgId)");
-                foreach ($subsubCat as $ssc) {
-                    array_push($menu, $ssc);
-                }
             }
         }
-        //echo for the menu's
-        //foreach ($menu as $m) {
-        //    //var_dump($m);
-        //    echo $m->ctgId . ':   :';
-        //    echo $m->ctgName . ':   :';
-        //    echo $m->ctgSubOf . ':   :';
-        //    echo '<br>';
-        //}
+///////      $stack = [];
+////      $stckCount = -1;
+////
+////      $cats = array();
+////
+////      foreach ($menu as $m)
+////          if (($m->ctgSubOf == 0)) {
+////              if (!empty($stack)) {
+////                  for ($i = 0; $i < $stckCount; $i++) {
+////                      array_push($cats, '</ul>');
+////                  }
+////                  unset($stack);
+////                  $stack = [];
+////              }
+////              array_push($cats, '<li><a href="{{URL::to(categorie/' . $m->ctgId . ')}}">' . $m->ctgName . '</a></li>');
+////              '                   <li><a href="{{URL::to("categorie/$m->ctgId")}}">{{$m->ctgName}}</a></li>'
+///////              array_push($stack, $m->ctgId);
+////              $stckCount = 0;
+////          } else {
+////              if ($m->ctgSubOf == $stack[$stckCount]) {
+////                  array_push($cats, '<ul><li><a href="{{URL::to(categorie/' . $m->ctgId . ')}}">' . $m->ctgName . '</a></li>');
+////                  array_push($stack, $m->ctgId);
+////                  $stckCount++;
+////              } else {
+////                  array_push($cats, '<li><a href="{{URL::to(categorie/' . $m->ctgId . ')}}">' . $m->ctgName . '</a></li>');
+////                  array_pop($stack);
+////                  array_push($stack, $m->ctgId);
+////              }
+////          }
+////      if ($stckCount != 0) {
+////          for ($i = 0; $i < $stckCount; $i++) {
+////              array_push($cats, '</ul>');
+////          }
+////      }
+////
+////        foreach($cats as $c)
+////        {
+////            echo "$c";
+////            echo '<br>';
+////        }
+//
+
         return $menu;
     }
 

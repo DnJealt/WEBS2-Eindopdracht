@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Product;
 use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller {
 
@@ -20,7 +21,24 @@ class ProductController extends Controller {
         $allProducts = Product::all();
         $categories = Categorie::all();
 
-		return view('productAll', array('products'=>$allProducts, 'categories'=>$categories));
+        $mainCat = DB::Select("CALL CatogMenu(0)");
+
+        $menu = array();
+        foreach ($mainCat as $mc) {
+            array_push($menu, $mc);
+            $subCat = DB::Select("CALL CatogMenu($mc->ctgId)");
+            foreach ($subCat as $sc) {
+                array_push($menu, $sc);
+                $subsubCat = DB::Select("CALL CatogMenu($sc->ctgId)");
+                foreach ($subsubCat as $ssc) {
+                    array_push($menu, $ssc);
+                }
+            }
+        }
+
+
+
+		return view('productAll', array('products'=>$allProducts, 'categories'=>$categories, 'menu'=>$menu));
 	}
 
 	/**
