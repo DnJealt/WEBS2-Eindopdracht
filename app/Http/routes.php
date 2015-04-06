@@ -18,7 +18,6 @@
 //HomeController Routes
 Route::get('/', 'HomeController@index');                        //view made, not finished
 Route::get('about', 'HomeController@about');                    //view made, not finished
-Route::get('contact', 'HomeController@contact');                //view made, not finished
 
 //ProductController Routes
 Route::get('product', 'ProductController@index');               //view made, not finished
@@ -35,7 +34,7 @@ Route::get('categorie/{id?}', 'CategorieController@categorieIndex');
 Route::get('cart', 'CartController@index');                     //view made, not finished
 Route::post('addToCart/{id?}', 'CartController@addToCart');     //post method for adding product to session
 Route::post('removeFromCart/{id?}', 'CartController@removeFromCart');    //post method for removing product from cart
-Route::get('checkOut', 'CartController@checkout');              //
+Route::get('cart/checkOut', 'CartController@checkout');              //
 
 Route::get('emptyCart', 'CartController@emptyCart');            //clears session data
 Route::get('showSession', 'CartController@showSession');
