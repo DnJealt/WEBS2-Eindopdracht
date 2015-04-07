@@ -8,17 +8,25 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>Over ons</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse nec egestas urna, sed pretium velit.
-                    Nulla faucibus est pharetra, viverra magna sed, ullamcorper elit.
-                    Fusce pellentesque convallis quam in posuere. Mauris fermentum tellus ac interdum sagittis.
+                <p>In de afgelopen weken hebben we gewerkt aan een webshop, hiervoor hebben we de kennis gebruikt van wat
+                    we geleerd hebben in de lessen van websites2.
                 </p>
-                <h2>Wat wij doen</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse nec egestas urna, sed pretium velit.
-                    Nulla faucibus est pharetra, viverra magna sed, ullamcorper elit.
-                    Fusce pellentesque convallis quam in posuere. Mauris fermentum tellus ac interdum sagittis.
-                </p>
+
+                <h2>Wat wij hebben gedaan</h2>
+                <div class="col-md-6">
+                    <h2>Michael Schouten</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <h2>Jelte van Tartwijk</h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
