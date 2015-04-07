@@ -162,21 +162,23 @@ class CartController extends Controller
                     $product = $item['item_id'];
                     $amount = $item['item_amount'];
 
-                    $cart = new Cart;
-                    $cart->user_usrId = $userId;
-                    $cart->product_prdId = $product;
-                    $cart->crtProductAmount = $amount;
-                    $cart->save(); //moet uncomment worden om de producten in de db cart te saven
+                    if ($amount > 0) {
+                        $cart = new Cart;
+                        $cart->user_usrId = $userId;
+                        $cart->product_prdId = $product;
+                        $cart->crtProductAmount = $amount;
+                        $cart->save(); //moet uncomment worden om de producten in de db cart te saven
+                    }
                 }
 
                 $dbProducts = DB::select("CALL MyCart($userId)");
 
-               //$dbGet = array();
+                //$dbGet = array();
                 foreach ($dbProducts as $i) {
                     $dbGet[] = Product::find($i->id);
                     $newAmount[] = $i->amount;
                 }
-               // var_dump($newAmount);
+                // var_dump($newAmount);
 
                 return view('checkout', array('products' => $dbGet, 'amounts' => $newAmount));
             }
@@ -186,8 +188,7 @@ class CartController extends Controller
 
     public function paid()
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $userId = Auth::User()->usrId;
 
             DB::select("CALL MyPaidCart($userId)");
@@ -196,7 +197,6 @@ class CartController extends Controller
         }
         return redirect('/');
     }
-
 
 
 }
