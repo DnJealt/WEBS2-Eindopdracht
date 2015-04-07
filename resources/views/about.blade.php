@@ -8,15 +8,35 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>Over ons</h1>
-                <p>In de afgelopen weken hebben we gewerkt aan een webshop, hiervoor hebben we de kennis gebruikt van wat
+
+                <p>In de afgelopen weken hebben we gewerkt aan een webshop, hiervoor hebben we de kennis gebruikt van
+                    wat
                     we geleerd hebben in de lessen van websites2.
                 </p>
 
                 <h2>Wat wij hebben gedaan</h2>
+
                 <div class="col-md-6">
                     <h2>Michael Schouten</h2>
                     <ul>
-                        <li></li>
+                        <li>includes:</li>
+                        <ul>
+                            <li>head</li>
+                            <li>header</li>
+                            <li>footer</li>
+                        </ul>
+                        <li>pagina's:</li>
+                        <ul>
+                            <li>home, about</li>
+                            <li>login</li>
+                            <li>registreer (alleen view)</li>
+                            <li>cart, checkout, betaald</li>
+                        </ul>
+                        <li>functionaliteit:</li>
+                        <ul>
+                            <li>categorieen uit database in header laden</li>
+                            <li>Sessions</li>
+                        </ul>
                     </ul>
                 </div>
 
