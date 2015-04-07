@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use \Validator;
 use \Redirect;
 use App\User;
@@ -52,7 +53,9 @@ class UserController extends Controller {
     public function logOut()
     {
         if (Auth::user()) {
+            Session::forget('cart');
             Auth::logout();
+
         }
         return redirect('/');
     }

@@ -25,10 +25,7 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 
 //CategorieController Routes
 Route::get('menu', 'CategorieController@index');                //header test view
-//Route::post('', '');
 Route::get('categorie/{id?}', 'CategorieController@categorieIndex');
-//Route::post('', '');
-//Route::get('', '');
 
 //CartController Routes
 Route::get('cart', 'CartController@index');                     //view made, not finished
@@ -36,7 +33,7 @@ Route::post('addToCart/{id?}', 'CartController@addToCart');     //post method fo
 Route::post('removeFromCart/{id?}', 'CartController@removeFromCart');    //post method for removing product from cart
 Route::get('cart/checkOut', 'CartController@checkout');              //
 
-Route::get('emptyCart', 'CartController@emptyCart');            //clears session data
+Route::get('emptyCart', 'CartController@emptyCart');            //clears cart data
 Route::get('showSession', 'CartController@showSession');
 
 //UserController Routes

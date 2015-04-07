@@ -53,7 +53,7 @@ class CartController extends Controller
     public function emptyCart()
     {
         // Remove all of the items from the session
-        Session::flush();
+        Session::forget('cart');
         return redirect('showSession');
     }
 
