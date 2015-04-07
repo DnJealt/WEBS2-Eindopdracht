@@ -86,7 +86,7 @@ class AdminController extends Controller {
 
 
                 if ($product) {
-                    return Redirect::to('product');
+                    return Redirect::to('CMS/updateProduct');
                 }
             }
         }
@@ -94,7 +94,7 @@ class AdminController extends Controller {
 
     public function updateProduct(){
         $products = Product::all();
-        return view('admin.updateIndex', array('products'=>$products));
+        return view('admin.updateProductIndex', array('products'=>$products));
     }
 
     public function getUpdateProduct($id){
@@ -104,62 +104,118 @@ class AdminController extends Controller {
         return view('admin.updateProduct', array('product'=>$product, 'categories'=>$categories));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
     public function postUpdateProduct(Request $request, $id){
+        if(Auth::User()){
+            if(Auth::User()->role_roleId == 1) {
 
-        $product = Product::find($id);
+                $destinationPathSmall = '';
+                $filenameSmall       = '';
+                $destinationPathBig = '';
+                $filenameBig      = '';
 
-        $product->prdName = $request->input('prdName');
-        $product->prdPrice = $request->input('prdPrice');
-        $product->prdSummary = $request->input('prdSummary');
-        $product->prdDescription = $request->input('prdDescription');
-        $product->categorie_ctgId = $request->input('categorie');
+                $product = Product::find($id);
 
+                if($request->hasFile('smallFileToUpload')){
+
+                    $file            = $request->file('smallFileToUpload');
+                    $destinationPathSmall = public_path().'/img/productimg/';
+                    $filenameSmall        = str_random(6) . '_' . $file->getClientOriginalName();
+                    $uploadSuccess   = $file->move($destinationPathSmall, $filenameSmall);
+
+
+                    $product->prdName = $request->input('prdName');
+                    $product->prdPrice = $request->input('prdPrice');
+                    $product->prdSummary = $request->input('prdSummary');
+                    $product->prdDescription = $request->input('prdDescription');
+                    $product->categorie_ctgId = $request->input('categorie');
+                    $product->prdPicSmall = $filenameSmall;
+                }
+
+                if($request->hasFile('bigFileToUpload')){
+
+                    $file            = $request->file('bigFileToUpload');
+                    $destinationPathBig = public_path().'/img/productimg/';
+                    $filenameBig        = str_random(6) . '_' . $file->getClientOriginalName();
+                    $uploadSuccess   = $file->move($destinationPathBig, $filenameBig);
+
+
+
+                    $product->prdName = $request->input('prdName');
+                    $product->prdPrice = $request->input('prdPrice');
+                    $product->prdSummary = $request->input('prdSummary');
+                    $product->prdDescription = $request->input('prdDescription');
+                    $product->categorie_ctgId = $request->input('categorie');
+                    $product->prdPicBig = $filenameBig;
+                }
+                else{
+
+                    $product->prdName = $request->input('prdName');
+                    $product->prdPrice = $request->input('prdPrice');
+                    $product->prdSummary = $request->input('prdSummary');
+                    $product->prdDescription = $request->input('prdDescription');
+                    $product->categorie_ctgId = $request->input('categorie');
+
+                }
+                $product->save();
+            }
+        }
+        return Redirect::to('CMS/updateProduct');
+    }
+
+    public function deleteProduct($id)
+    {
+        if (Auth::User()) {
+            if (Auth::User()->role_roleId == 1) {
+
+                $product = Product::find($id);
+
+                $product->delete();
+            }
+        }
+        return Redirect::to('CMS/updateProduct');
+    }
+
+    public function createCategory(){
+
+        $baseCategories = Categorie::where('ctgSubOf','=', 0)->get();
+
+        return view('admin.createCategory', array('baseCats'=>$baseCategories));
 
     }
 
+    public function storeCategory(Request $request){
+        if (Auth::User()) {
+            if (Auth::User()->role_roleId == 1) {
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+                $category = new Categorie();
+                $category->ctgName = $request->input('ctgName');
+                $category->ctgSubOf = $request->input('subCatOf');
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+                $category->save();
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+                return Redirect::to('/');
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+            }
+        }
+        else{
+            return Redirect::to('/');
+        }
+
+    }
+
+    public function updateCategory(){
+
+        $categories = Categorie::all();
+
+        return view('admin.updateCategoryIndex', array('categories'=>$categories));
+    }
+
+
+
 
 }

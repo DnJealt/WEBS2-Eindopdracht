@@ -13,7 +13,7 @@
                         <table>
                             <tr>
                                 <th>
-                                    <p><input type="text" name="username" value="" placeholder="Username" required></p>
+                                    <p><input type="text" name="username" value="" placeholder="Username" required autofocus></p>
                                 </th>
                             </tr>
                             <tr>

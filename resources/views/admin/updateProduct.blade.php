@@ -36,6 +36,7 @@
                                     Categorie:
                                     <select name="categorie" form="updateProduct" required>
                                         @foreach($categories as $items)
+
                                             @if($product->categorie_ctgId == $items->ctgId)
                                             <option selected value="{{$items->ctgId}}">
                                                 {{$items->ctgName}}
