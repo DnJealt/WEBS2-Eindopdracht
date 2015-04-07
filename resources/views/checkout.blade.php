@@ -89,10 +89,10 @@
                                 <?php $totalprice = $totalprice + ($items->prdPrice * $amounts[$count])?>
                                     <?php $count++; ?>
                             @endforeach
-                                {{$totalprice}}
+                                €{{$totalprice}}
                             </td>
                             <td>
-                                <form method="post" action="{{Url::to("Betaald")}}">
+                                <form method="post" action="{{Url::to("cart/betaald")}}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input class="" type="submit" value="Naar betalen"
                                            name="Naar_betalen">

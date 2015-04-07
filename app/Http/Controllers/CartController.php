@@ -184,4 +184,15 @@ class CartController extends Controller
         return redirect('/');
     }
 
+    public function betaald()
+    {
+        if(Auth::check())
+        {
+            return View('paid');
+        }
+        return Redirect('/');
+    }
+
+
+
 }
