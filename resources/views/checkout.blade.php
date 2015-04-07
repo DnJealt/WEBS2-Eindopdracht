@@ -68,25 +68,28 @@
                                 </td>
                                 <td>
                                     {{--product amount--}}
-                                    {{$amounts}}x
+                                    {{$amounts[$count]}}x
                                 </td>
                                 <td class="total_row">
                                 <span class="pricewrap">
                                     {{--calculated total price--}}
-                                    €{{$items->prdPrice * $amounts}}
+                                    €{{$items->prdPrice * $amounts[$count]}}
                                 </span>
                                 </td>
                             </tr>
+                            <?php $count++; ?>
                         @endforeach
                         <tr>
                             <td></td>
                             <td></td>
                             <td>Totalprice:</td>
                             <td>
-                        <?php $totalprice = 0; ?>
+                        <?php $totalprice = 0; $count = 0; ?>
                             @foreach($products as $items)
-                                <?php $totalprice = $totalprice + ($items->prdPrice * $amounts)?>
+                                <?php $totalprice = $totalprice + ($items->prdPrice * $amounts[$count])?>
+                                    <?php $count++; ?>
                             @endforeach
+                                {{$totalprice}}
                             </td>
                             <td>
                                 <form method="post" action="{{Url::to("Betaald")}}">

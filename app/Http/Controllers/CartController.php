@@ -171,10 +171,14 @@ class CartController extends Controller
 
                 $dbProducts = DB::select("CALL MyCart($userId)");
 
+               //$dbGet = array();
                 foreach ($dbProducts as $i) {
                     $dbGet[] = Product::find($i->id);
+                    $newAmount[] = $i->amount;
                 }
-                return view('checkout', array('products' => $dbGet, 'amounts' => $amount));
+               // var_dump($newAmount);
+
+                return view('checkout', array('products' => $dbGet, 'amounts' => $newAmount));
             }
         }
         return redirect('/');
