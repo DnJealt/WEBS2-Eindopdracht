@@ -8,6 +8,7 @@ use App\Product;
 use App\User;
 use App\Categorie;
 
+use DB;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -198,7 +199,7 @@ class AdminController extends Controller {
 
                 $category->save();
 
-                return Redirect::to('/');
+                return Redirect::to('CMS/updateCategory');
 
             }
         }
@@ -208,11 +209,80 @@ class AdminController extends Controller {
 
     }
 
+
     public function updateCategory(){
 
-        $categories = Categorie::all();
+        $mainCat = DB::Select("CALL CatogMenu(0)");
+
+        $nonBaseCategories = Categorie::where('ctgSubOf','!=', 0)->get();
+
+
+
+        $categories = array();
+        foreach ($mainCat as $mc) {
+            array_push($categories, $mc);
+            $subCat = DB::Select("CALL CatogMenu($mc->ctgId)");
+            foreach ($subCat as $sc) {
+                array_push($categories, $sc);
+            }
+        }
+
+
 
         return view('admin.updateCategoryIndex', array('categories'=>$categories));
+    }
+
+    public function getUpdateCategory($id){
+
+        $category = Categorie::find($id);
+        $baseCategories = Categorie::where('ctgSubOf','=', 0)->get();
+        $nonBaseCategories = Categorie::where('ctgSubOf','!=', 0)->get();
+
+        $hasSubCats = false;
+        foreach($nonBaseCategories as $entry){
+            if($entry->ctgSubOf == $category->ctgId){
+                $hasSubCats = true;
+            }
+        }
+
+
+        return view('admin.updateCategory', array('category'=>$category, 'baseCats'=>$baseCategories,'hasSubCats'=>$hasSubCats));
+    }
+
+    public function postUpdateCategory(Request $request, $id){
+        if (Auth::User()) {
+            if (Auth::User()->role_roleId == 1) {
+
+                $category = Categorie::find($id);
+                $category->ctgName = $request->input('ctgName');
+                $category->ctgSubOf = $request->input('subCatOf');
+
+                $category->save();
+
+
+                return Redirect::to('CMS/updateCategory');
+
+
+
+            }
+        }
+        else{
+            return Redirect::to('/');
+        }
+    }
+
+    public function deleteCategory($id){
+        if (Auth::User()) {
+            if (Auth::User()->role_roleId == 1) {
+
+                $category = Categorie::find($id);
+
+                $category->delete();
+
+                return Redirect::to('CMS/updateCategory');
+            }
+        }
+
     }
 
 

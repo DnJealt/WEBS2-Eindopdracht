@@ -4,7 +4,25 @@
 
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h1>Lijst met Categorieën</h1>
+            <ul>
+                @foreach($categories as $ctg)
+                    @if(($ctg->ctgSubOf == 0))
+                        <li>
+                            <a href="{{URL::to("CMS/updateCategory/$ctg->ctgId")}}">{{$ctg->ctgName}}</a>
+                        </li>
+                    @else
+                        <ul><li><a href="{{URL::to("CMS/updateCategory/$ctg->ctgId")}}">{{$ctg->ctgName}}</a></li></ul>
+                    @endif
+                @endforeach
 
+            </ul>
+        </div>
+    </div>
+</div>
 
 
 

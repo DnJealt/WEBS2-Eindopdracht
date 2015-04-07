@@ -25,10 +25,8 @@ Route::get('productDetail/{id?}', 'ProductController@show');    //view made, not
 
 //CategorieController Routes
 Route::get('menu', 'CategorieController@index');                //header test view
-//Route::post('', '');
 Route::get('categorie/{id?}', 'CategorieController@categorieIndex');
-//Route::post('', '');
-//Route::get('', '');
+
 
 //CartController Routes
 Route::get('cart', 'CartController@index');                     //view made, not finished
@@ -61,6 +59,9 @@ Route::post('CMS/deleteProduct/{id?}', 'AdminController@deleteProduct');
 Route::get('CMS/createCategory', 'AdminController@createCategory');
 Route::post('CMS/storeCategory', 'AdminController@storeCategory');
 Route::get('CMS/updateCategory', 'AdminController@updateCategory');
+Route::get('CMS/updateCategory/{id?}', 'AdminController@getUpdateCategory');
+Route::post('CMS/updateCategory/{id?}', 'AdminController@postUpdateCategory');
+Route::post('CMS/deleteCategory/{id?}', 'AdminController@deleteCategory');
 
 
 //Route::get('', '');
