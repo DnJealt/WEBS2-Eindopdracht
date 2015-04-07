@@ -166,7 +166,7 @@ class CartController extends Controller
                     $cart->user_usrId = $userId;
                     $cart->product_prdId = $product;
                     $cart->crtProductAmount = $amount;
-//                    $cart->save(); //moet uncomment worden om de producten in de db cart te saven
+                    $cart->save(); //moet uncomment worden om de producten in de db cart te saven
                 }
 
                 $dbProducts = DB::select("CALL MyCart($userId)");
@@ -184,13 +184,17 @@ class CartController extends Controller
         return redirect('/');
     }
 
-    public function betaald()
+    public function paid()
     {
         if(Auth::check())
         {
-            return View('paid');
+            $userId = Auth::User()->usrId;
+
+            DB::select("CALL MyPaidCart($userId)");
+
+            return view('paid');
         }
-        return Redirect('/');
+        return redirect('/');
     }
 
 
