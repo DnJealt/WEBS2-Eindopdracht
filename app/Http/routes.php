@@ -44,11 +44,22 @@ Route::get('register', 'UserController@getRegister');           //finished
 Route::post('register', 'UserController@postRegister');         //not finished, duplicate user not checked yet
 
 //AdminController Routes
-Route::get('CMS', 'AdminController@index');                     //view not made, not finished
-Route::get('CMS/createProduct', 'AdminController@createProduct');
-Route::post('CMS/storeProduct', 'AdminController@storeProduct');
-Route::get('CMS/updateProduct', 'AdminController@updateProduct');
-Route::get('CMS/updateProduct/{id?}', 'AdminController@getUpdateProduct');
-Route::post('CMS/updateProduct/{id?}', 'AdminController@postUpdateProduct');
+Route::get('CMS', 'AdminController@index');
+/* -----Products------ */
+    Route::get('CMS/createProduct', 'AdminController@createProduct');
+    Route::post('CMS/storeProduct', 'AdminController@storeProduct');
+    Route::get('CMS/updateProduct', 'AdminController@updateProduct');
+    Route::get('CMS/updateProduct/{id?}', 'AdminController@getUpdateProduct');
+    Route::post('CMS/updateProduct/{id?}', 'AdminController@postUpdateProduct');
+    Route::post('CMS/deleteProduct/{id?}', 'AdminController@deleteProduct');
+/* ----Categories------ */
+    Route::get('CMS/createCategory', 'AdminController@createCategory');
+    Route::post('CMS/storeCategory', 'AdminController@storeCategory');
+    Route::get('CMS/updateCategory', 'AdminController@updateCategory');
+    Route::get('CMS/updateCategory/{id?}', 'AdminController@getUpdateCategory');
+    Route::post('CMS/updateCategory/{id?}', 'AdminController@postUpdateCategory');
+    Route::post('CMS/deleteCategory/{id?}', 'AdminController@deleteCategory');
+
+
 //Route::get('', '');
 

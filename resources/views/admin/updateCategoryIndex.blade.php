@@ -6,34 +6,25 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-            <h1>Het geweldige admin CMS!</h1>
-            <p>
-            <h3>Producten</h3>
+        <div class="col-md-offset-2 col-md-8">
+            <h1>Lijst met Categorieën</h1>
             <ul>
-                <li>
-                    <a href="{{URL::to('CMS/createProduct')}}">Maak product aan</a>
-                </li>
-                <li>
-                    <a href="{{URL::to('CMS/updateProduct')}}">Beheer producten</a>
-                </li>
-            </ul>
-            </p>
-            <p>
-            <h3>Categorieën</h3>
-            <ul>
-                <li>
-                    <a href="{{URL::to('CMS/createCategory')}}">Maak nieuwe categorie</a>
-                </li>
-                <li>
-                    <a href="{{URL::to('CMS/updateCategory')}}">Beheer categorieën</a>
-                </li>
-            </ul>
-            </p>
+                @foreach($categories as $ctg)
+                    @if(($ctg->ctgSubOf == 0))
+                        <li>
+                            <a href="{{URL::to("CMS/updateCategory/$ctg->ctgId")}}">{{$ctg->ctgName}}</a>
+                        </li>
+                    @else
+                        <ul><li><a href="{{URL::to("CMS/updateCategory/$ctg->ctgId")}}">{{$ctg->ctgName}}</a></li></ul>
+                    @endif
+                @endforeach
 
+            </ul>
         </div>
     </div>
 </div>
+
+
 
 
 

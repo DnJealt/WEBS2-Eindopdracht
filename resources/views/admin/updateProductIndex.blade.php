@@ -18,12 +18,12 @@
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="100" height="150">
                                 </div>
                                 <div class="col-md-offset-5">
-                                    <p> {{$items->prdName}}    </p>
-                                    <p> Prijs: €{{$items->prdPrice}}    </p>
-                                    <p> {{$items->prdSummary}}    </p>
+                                    <p> {{$items->prdName}} </p>
+                                    <p> Prijs: €{{$items->prdPrice}} </p>
+                                    <p> {{$items->prdSummary}} </p>
                                     <p></p>
                                     @if(Auth::user())
-                                        <form method="post" action="{{Url::to("/CMS/deleteProduct/$items->prdId")}}">
+                                        <form onsubmit="return confirm('Weet je zeker dat je dit product wil verwijderen?');" method="post" action="{{Url::to("/CMS/deleteProduct/$items->prdId")}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input class="" type="submit" value="Delete" name="{{$items->prdId}}">
                                         </form>
@@ -40,12 +40,12 @@
                                     <img src="{{ URL::to("/img/productimg/$items->prdPicSmall") }}" width="100" height="150">
                                 </div>
                                 <div class="col-md-offset-5">
-                                    <p> {{$items->prdName}}    </p>
-                                    <p> Prijs: €{{$items->prdPrice}}    </p>
-                                    <p> {{$items->prdSummary}}    </p>
+                                    <p> {{$items->prdName}} </p>
+                                    <p> Prijs: €{{$items->prdPrice}} </p>
+                                    <p> {{$items->prdSummary}} </p>
                                     <p></p>
                                     @if(Auth::user())
-                                        <form method="post" action="{{Url::to("/CMS/deleteProduct/$items->prdId")}}">
+                                        <form onsubmit="return confirm('Weet je zeker dat je dit product wil verwijderen?');" method="post" action="{{Url::to("/CMS/deleteProduct/$items->prdId")}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input class="" type="submit" value="Delete" name="{{$items->prdId}}">
                                         </form>
@@ -79,6 +79,7 @@
 <script src="/WEBS2-Eindopdracht/public/js/vendor/bootstrap.min.js"></script>
 <script src="/WEBS2-Eindopdracht/public/js/main.js"></script>
 <script type="text/javascript">
+
     $(document).ready(function() {
         $('#divAuction2').hide();
         setInterval(function() {

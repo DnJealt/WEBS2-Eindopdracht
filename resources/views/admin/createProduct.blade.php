@@ -11,7 +11,7 @@
                     <table>
                         <tr>
                             <th>
-                                <p><input type="text" name="prdName" value="" placeholder="Productnaam" required></p>
+                                <p><input type="text" name="prdName" value="" placeholder="Productnaam" required autofocus></p>
                             </th>
                         </tr>
                         <tr>
