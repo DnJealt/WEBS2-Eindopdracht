@@ -43,7 +43,20 @@
                 <div class="col-md-6">
                     <h2>Jelte van Tartwijk</h2>
                     <ul>
-                        <li></li>
+                        <li>Paginas</li>
+                        <ul>
+                            <li>Productlijst</li>
+                            <li>Product detailpagina</li>
+                            <li>Admin index</li>
+                            <li>Create product, update product</li>
+                            <li>Create Category, update category</li>
+                        </ul>
+                        <li>Functionaliteit</li>
+                        <ul>
+                            <li>CMS, creëren en bewerken van categorieën, producten en het uploaden van plaatjes</li>
+                            <li>Registreren van een user</li>
+                            <li>Detailpagina's, het ophalen uit de database en de juiste informatie tonen.</li>
+                        </ul>
                     </ul>
                 </div>
 
