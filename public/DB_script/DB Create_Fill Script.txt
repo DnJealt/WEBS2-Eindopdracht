@@ -1,0 +1,282 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema manschou_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `manschou_db` DEFAULT CHARACTER SET latin1 ;
+USE `manschou_db` ;
+
+-- -----------------------------------------------------
+-- Table `manschou_db`.`categories`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manschou_db`.`categories` (
+  `ctgId` INT(11) NOT NULL AUTO_INCREMENT,
+  `ctgName` VARCHAR(45) NOT NULL,
+  `ctgSubOf` INT(11) NULL DEFAULT '0',
+  PRIMARY KEY (`ctgId`),
+  INDEX `fk_categorie_categorie1_idx` (`ctgSubOf` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `manschou_db`.`products`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manschou_db`.`products` (
+  `prdId` INT(11) NOT NULL AUTO_INCREMENT,
+  `prdName` VARCHAR(45) NOT NULL,
+  `prdPrice` DECIMAL(10,2) NOT NULL,
+  `prdSummary` VARCHAR(200) NOT NULL,
+  `prdDescription` VARCHAR(500) NOT NULL,
+  `prdPicBig` VARCHAR(45) NOT NULL,
+  `prdPicSmall` VARCHAR(45) NOT NULL,
+  `categorie_ctgId` INT(11) NOT NULL,
+  PRIMARY KEY (`prdId`),
+  INDEX `fk_product_categorie1_idx` (`categorie_ctgId` ASC),
+  CONSTRAINT `fk_product_categorie1`
+    FOREIGN KEY (`categorie_ctgId`)
+    REFERENCES `manschou_db`.`categories` (`ctgId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `manschou_db`.`roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manschou_db`.`roles` (
+  `roleId` INT(11) NOT NULL AUTO_INCREMENT,
+  `roleName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`roleId`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `manschou_db`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manschou_db`.`users` (
+  `usrId` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `role_roleId` INT(11) NOT NULL,
+  `blocked` BIT(1) NULL DEFAULT b'0',
+  `remember_token` VARCHAR(100) NULL DEFAULT NULL,
+  `updated_at` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`usrId`),
+  INDEX `fk_user_role1_idx` (`role_roleId` ASC),
+  CONSTRAINT `fk_user_role1`
+    FOREIGN KEY (`role_roleId`)
+    REFERENCES `manschou_db`.`roles` (`roleId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `manschou_db`.`carts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manschou_db`.`carts` (
+  `cartId` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_usrId` INT(11) NOT NULL,
+  `product_prdId` INT(11) NOT NULL,
+  `crtHasPaid` TINYINT(4) NOT NULL DEFAULT '0',
+  `crtProductAmount` INT(11) NOT NULL,
+  PRIMARY KEY (`cartId`, `product_prdId`),
+  INDEX `fk_user_has_product_product1_idx` (`product_prdId` ASC),
+  INDEX `fk_user_has_product_user1_idx` (`user_usrId` ASC),
+  CONSTRAINT `fk_user_has_product_product1`
+    FOREIGN KEY (`product_prdId`)
+    REFERENCES `manschou_db`.`products` (`prdId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_product_user1`
+    FOREIGN KEY (`user_usrId`)
+    REFERENCES `manschou_db`.`users` (`usrId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 40
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `manschou_db`.`pages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manschou_db`.`pages` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `link` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+USE `manschou_db` ;
+
+-- -----------------------------------------------------
+-- procedure Authentication
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `Authentication`(usrname VARCHAR(20),
+                            pass VARCHAR(20))
+BEGIN
+  
+  DECLARE count INT;
+  DECLARE blocked BIT;
+ 
+  SET count = (SELECT COUNT(usrId) FROM users WHERE username = usrname AND password = pass);
+  
+  SET blocked = (SELECT blocked FROM users WHERE username = usrname);
+  
+  IF (blocked = 1) THEN
+	SELECT -2 as id;
+  ELSE IF (count = 1) THEN
+	SELECT usrId as id FROM users WHERE username = usrname AND password = pass;
+  ELSE
+	SELECT -1 as id;
+  END IF; 
+ END IF;
+
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure CatogMenu
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `CatogMenu`(subof int)
+BEGIN
+  
+SELECT * FROM categories where ctgSubOf = subof;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure MyCart
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `MyCart`(usrid VARCHAR(20))
+BEGIN
+    
+  select product_prdId as id, crtProductAmount as amount  FROM carts WHERE user_usrId = usrid AND crtHasPaid = 0;
+  
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure MyPaidCart
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `MyPaidCart`(usrid VARCHAR(20))
+BEGIN
+    
+  UPDATE carts SET crtHasPaid = 1 WHERE user_usrId = usrid AND crtHasPaid = 0;
+  
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure ProductOnCategorie
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `ProductOnCategorie`(cat int)
+BEGIN
+  
+	SELECT * FROM Products where categorie_ctgId = cat;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure SubCategorie
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `SubCategorie`(cat int)
+BEGIN
+  
+	SELECT * FROM categories where ctgSubOf = cat;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure TopProduct
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `manschou_db`$$
+CREATE DEFINER=`manschou`@`%` PROCEDURE `TopProduct`()
+BEGIN
+  
+  DECLARE pid INT;
+  
+  SET pid = (select product_prdId as id  FROM carts GROUP BY product_prdId ORDER BY sum(crtProductAmount) DESC LIMIT 1);
+  
+  IF (pid > 0) THEN
+	SELECT pid as id;
+  ELSE
+	SELECT -1 as id;
+  END IF; 
+
+END$$
+
+DELIMITER ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- create script
+-- -----------------------------------------------------
+INSERT INTO roles (roleName) 
+					VALUES ('admin'), ('editor'), ('user'), ('guest');
+
+INSERT INTO users (username, password, email, role_roleId) 
+				VALUES ('admin', 'admin', 'admin@admin.com', 1);
+
+INSERT INTO categories (ctgName, ctgSubOf)
+				VALUES ('Smeersel', '0')
+						('beleg', '0')
+						('strooisel', '0')
+						('chocolade', '1');
+
+
+INSERT INTO products (prdName, prdPrice, prdSummary, prdDescription, prdPicBig, prdPicSmall, categorie_ctgId) 
+				VALUES ('Calvé Pindakaas 350 gram', '1.50', 'Calvé Pindakaas is de enige échte pindakaas. En dat proef je meteen! ', 'Gemaakt van echte pinda's en heerlijk voor op de boterham. Daarnaast kan deze pindakaas heel goed gebruikt worden als basis van een heerlijke zelfgemaakte satésaus. Met toevoeging van wat extra kruiden, sambal, ketjap en een uitje, staat er snel een lekkere pindasaus klaar, geheel naar eigen smaak gemaakt. De pindasaus past perfect bij nasi en bamigerechten, maar ook bij vleesgerechten met kip of varkensvlees is de satésaus een echte aanrader.', 'pindakaasBig.png', 'pindakaasSmall.png', '1'),
+						('Nutella Hazelnootpasta 300 gram', '1.20', 'Nutella', 'Dit is de door Nutella speciaal gemaakte smeersel', 'nutellaBig.png', 'nutellaSmall.png', '4');
+
+INSERT INTO carts (user_userId, product_prdId, crtHasPaid, crtProductAmount) 
+				VALUES ('1', '1', '1', '1');
+
