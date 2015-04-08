@@ -11,8 +11,9 @@
 
                 <p>In de afgelopen weken hebben we gewerkt aan een webshop, hiervoor hebben we de kennis gebruikt van
                     wat
-                    we geleerd hebben in de lessen van websites2.
+                    we geleerd hebben in de lessen van WEBS2.
                 </p>
+                <p><strong>All hail Lord Paul Wagener</strong></p>
 
                 <h2>Wat wij hebben gedaan</h2>
 
@@ -43,7 +44,20 @@
                 <div class="col-md-6">
                     <h2>Jelte van Tartwijk</h2>
                     <ul>
-                        <li></li>
+                        <li>Paginas</li>
+                        <ul>
+                            <li>Productlijst</li>
+                            <li>Product detailpagina</li>
+                            <li>Admin index</li>
+                            <li>Create product, update product</li>
+                            <li>Create Category, update category</li>
+                        </ul>
+                        <li>Functionaliteit</li>
+                        <ul>
+                            <li>CMS, creëren en bewerken van categorieën, producten en het uploaden van plaatjes</li>
+                            <li>Registreren van een user</li>
+                            <li>Detailpagina's, het ophalen uit de database en de juiste informatie tonen.</li>
+                        </ul>
                     </ul>
                 </div>
 
